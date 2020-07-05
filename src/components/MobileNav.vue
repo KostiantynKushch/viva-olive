@@ -1,17 +1,29 @@
 <template>
-  <nav class="ba-mobnav">
-    <ul class="ba-mobnav__list">
-      <li @click="clicked" v-for="item in links" :key="item.key" class="ba-mobnav__item">
-        <router-link :to="item.link" class="ba-mobnav__link">{{item.title}}</router-link>
-      </li>
-      <!-- /.ba-mobnav__item -->
-    </ul>
-    <!-- /.ba-mobnav__list -->
-  </nav>
+  <div class="ba-mobnav">
+    <nav class="ba-mobnav__navigation">
+      <ul class="ba-mobnav__list">
+        <li @click="clicked" v-for="item in links" :key="item.key" class="ba-mobnav__item">
+          <router-link :to="item.link" class="ba-mobnav__link">{{item.title}}</router-link>
+        </li>
+        <!-- /.ba-mobnav__item -->
+      </ul>
+      <!-- /.ba-mobnav__list -->
+    </nav>
+    <div class="ba-mobnav__location">
+      <SelectLoc />
+    </div>
+    <!-- /.ba-mobnav__location -->
+    <div class="ba-mobnav__social">
+      <SocialMedia />
+    </div>
+    <!-- /.ba-mobnav__social -->
+  </div>
   <!-- /.ba-mobnav -->
 </template>
 
 <script>
+import SelectLoc from "@/components/SelectLoc.vue";
+import SocialMedia from "@/components/SocialMedia.vue";
 export default {
   data() {
     return {
@@ -49,6 +61,10 @@ export default {
       // console.log("clicked");
       this.$emit("clickedNav", false);
     }
+  },
+  components: {
+    SelectLoc,
+    SocialMedia
   }
 };
 </script>
@@ -91,6 +107,10 @@ export default {
     &.router-link-exact-active {
       font-weight: 700;
     }
+  }
+  // .ba-mobnav__location
+
+  &__location {
   }
 }
 </style>
