@@ -1,0 +1,96 @@
+<template>
+  <nav class="ba-mobnav">
+    <ul class="ba-mobnav__list">
+      <li @click="clicked" v-for="item in links" :key="item.key" class="ba-mobnav__item">
+        <router-link :to="item.link" class="ba-mobnav__link">{{item.title}}</router-link>
+      </li>
+      <!-- /.ba-mobnav__item -->
+    </ul>
+    <!-- /.ba-mobnav__list -->
+  </nav>
+  <!-- /.ba-mobnav -->
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      links: [
+        {
+          key: 1,
+          link: "/",
+          title: "Головна"
+        },
+        {
+          key: 2,
+          link: "#",
+          title: "Меню"
+        },
+        {
+          key: 3,
+          link: "/gallery",
+          title: "Фотогалерея"
+        },
+        {
+          key: 4,
+          link: "#",
+          title: "Новини"
+        },
+        {
+          key: 5,
+          link: "#",
+          title: "Контакти"
+        }
+      ]
+    };
+  },
+  methods: {
+    clicked() {
+      // console.log("clicked");
+      this.$emit("clickedNav", false);
+    }
+  }
+};
+</script>
+
+<style lang="scss" scoped >
+@import "@/assets/scss/_variables.scss";
+
+.ba-mobnav {
+  position: absolute;
+  background: $background;
+  top: 100%;
+  right: 30px;
+  width: 100vw;
+  height: 100vh;
+  // .ba-mobnav__list
+
+  &__list {
+    text-align: right;
+    list-style: none;
+    padding-left: 0;
+    margin: 0 0 76px;
+  }
+
+  // .ba-mobnav__item
+
+  &__item {
+    padding-top: 36px;
+  }
+
+  // .ba-mobnav__link
+
+  &__link {
+    text-decoration: none;
+    color: $for_light_bg;
+    font-size: 20px;
+    line-height: 1;
+    &:hover {
+      color: $light_olive;
+    }
+    &.router-link-exact-active {
+      font-weight: 700;
+    }
+  }
+}
+</style>
