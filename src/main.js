@@ -2,7 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import VueMq from 'vue-mq'
-import * as TastyBurgerButton from 'vue-tasty-burgers';
+
+export const EventBus = new Vue();
 
 Vue.config.productionTip = false
 
@@ -15,7 +16,6 @@ Vue.use(VueMq, {
 	}
 })
 
-Vue.use(TastyBurgerButton, { prefix: 'ba' });
 
 new Vue({
 	router,

@@ -2,7 +2,7 @@
   <div class="ba-mobnav">
     <nav class="ba-mobnav__navigation">
       <ul class="ba-mobnav__list">
-        <li @click="clicked" v-for="item in links" :key="item.key" class="ba-mobnav__item">
+        <li v-for="item in links" :key="item.key" class="ba-mobnav__item">
           <router-link :to="item.link" class="ba-mobnav__link">{{item.title}}</router-link>
         </li>
         <!-- /.ba-mobnav__item -->
@@ -56,12 +56,7 @@ export default {
       ]
     };
   },
-  methods: {
-    clicked() {
-      // console.log("clicked");
-      this.$emit("clickedNav", false);
-    }
-  },
+  methods: {},
   components: {
     SelectLoc,
     SocialMedia

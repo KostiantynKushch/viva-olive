@@ -1,54 +1,48 @@
 <template>
   <div class="ba-mob-menu">
-    <ba-tasty-burger-button
-      :type="buttonType"
-      :active="isActive"
-      :size="size"
-      :color="color"
-      :active-color="activeColor"
-      @toggle="onToggle"
-    />
+    <Hamburger class="ba-mob-menu__hamb" />
     <transition name="slide-fade">
-      <MobileNav v-if="showMobNav" @clickedNav="clickedNav" />
+      <MobileNav v-if="showMobNav" />
     </transition>
   </div>
   <!-- /.ba-mob-menu -->
 </template>
 
 <script>
-// import Hamburger from "@/components/Hamburger.vue";
-import { TastyBurgerButton } from "vue-tasty-burgers";
+import { EventBus } from "@/main.js";
 
+import Hamburger from "@/components/Hamburger.vue";
 import MobileNav from "@/components/MobileNav.vue";
 
 export default {
   data() {
     return {
-      showMobNav: false,
-      buttonType: "spin",
-      isActive: false,
-      size: "xl",
-      color: "#2c2c11",
-      activeColor: "#747436"
+      showMobNav: false
     };
   },
-  methods: {
-    onToggle(active) {
-      // Toggle menu
-      this.showMobNav = active;
-    },
-    clickedNav(value) {
-      this.showMobNav = value;
+  methods: {},
+  components: {
+    MobileNav,
+    Hamburger
+  },
+  watch: {
+    $route(to, from) {
+      // react to route changes...
+      this.showMobNav = false;
+      // transfer data to child component
+      EventBus.$emit("hiddenMenu", this.showMobNav);
     }
   },
-  components: {
-    "ba-tasty-burger-button": TastyBurgerButton,
-    MobileNav
+  created() {
+    //   get data from shilde component
+    EventBus.$on("toggledHamb", isActive => {
+      this.showMobNav = isActive;
+    });
   }
 };
 </script>
 
-<style>
+<style lang="scss">
 .slide-fade-enter-active {
   transition: all 0.5s ease;
 }
@@ -59,5 +53,12 @@ export default {
 /* .slide-fade-leave-active до версии 2.1.8 */ {
   transform: translateX(10px);
   opacity: 0;
+}
+.ba-mob-menu {
+  // .ba-mob-menu__hamb
+
+  &__hamb {
+    text-align: right;
+  }
 }
 </style>
