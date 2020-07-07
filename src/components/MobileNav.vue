@@ -71,9 +71,10 @@ export default {
   position: absolute;
   background: $background;
   top: 100%;
-  right: 30px;
+  right: 0;
   width: 100vw;
   height: 100vh;
+  padding-right: 30px;
   // .ba-mobnav__list
 
   &__list {

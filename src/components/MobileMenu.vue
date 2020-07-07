@@ -31,6 +31,13 @@ export default {
       this.showMobNav = false;
       // transfer data to child component
       EventBus.$emit("hiddenMenu", this.showMobNav);
+    },
+    showMobNav() {
+      if (this.showMobNav) {
+        document.documentElement.style.overflow = "hidden";
+        return;
+      }
+      document.documentElement.style.overflow = "auto";
     }
   },
   created() {
