@@ -2,24 +2,53 @@
   <header class="ba-header">
     <div class="ba-container">
       <div class="ba-header__inner">
-        <div class="ba-row ba-vertical-align">
-          <div class="ba-col-medium-2 ba-col-small-4 ba-logo ba-header__logo ba-logo">
-            <router-link to="/" class="ba-logo__link">
-              <img alt="Logo" src="@/assets/logo.png" class="ba-logo__img" />
-            </router-link>
-          </div>
-          <div class="ba-col-small-4 ba-col-medium-5"></div>
-          <!-- /.ba-col-smaall-4 ba-col-medium-5 -->
-          <div class="ba-col-small-4 ba-col-medium-5">
-            <div class="ba-header__right-part">
-              <MobileMenu v-if="$mq === 'mobile' || $mq === 'tablet'" />
-              <p v-else>Desctop Nav</p>
+        <div class="ba-wrap-res ba-wrap-res--mobile" v-if="$mq === 'mobile' || $mq === 'tablet'">
+          <div class="ba-row ba-vertical-align">
+            <div class="ba-col-medium-2 ba-col-small-4 ba-logo ba-header__logo ba-logo">
+              <router-link to="/" class="ba-logo__link">
+                <img alt="Logo" src="@/assets/logo.png" class="ba-logo__img" />
+              </router-link>
             </div>
-            <!-- /.ba-header__right-part -->
+
+            <div class="ba-col-small-8 ba-col-medium-10">
+              <div class="ba-header__right-part">
+                <MobileMenu />
+              </div>
+              <!-- /.ba-header__right-part -->
+            </div>
+            <!-- /.ba-col-smaall-4 ba-col-medium-5 -->
           </div>
-          <!-- /.ba-col-smaall-4 ba-col-medium-5 -->
+          <!-- /.ba-row -->
         </div>
-        <!-- /.ba-row -->
+        <!-- /.ba-wrap-res -->
+        <div v-else class="ba-wrap-res ba-wrap-res--desk">
+          <div class="ba-row">
+            <div class="ba-col-5 ba-vertical-align">
+              <HeaderDeskNav :links="links" />
+            </div>
+            <!-- /.ba-col-5 -->
+            <div class="ba-col-2 ba-vertical-align">
+              <router-link to="/" class="ba-logo__link">
+                <img alt="Logo" src="@/assets/logo.png" class="ba-logo__img" />
+              </router-link>
+            </div>
+            <!-- /.ba-col-2 -->
+            <div class="ba-col-5 ba-vertical-align">
+              <div class="ba-header__desk-right">
+                <div class="ba-wrap-single">
+                  <HeaderDeskNav :links="links" :lastItem="lastItem" />
+                </div>
+                <!-- /.ba-wrap -->
+                <HeaderCartButton />
+                <SelectLoc />
+              </div>
+              <!-- /.ba-header__right-part -->
+            </div>
+            <!-- /.ba-col-5 -->
+          </div>
+          <!-- /.ba-row -->
+        </div>
+        <!-- /.ba-wrap-res ba-wrap-res--desk -->
       </div>
       <!-- /.ba-header__inner -->
     </div>
@@ -30,14 +59,47 @@
 
 <script>
 import MobileMenu from "@/components/MobileMenu.vue";
+import HeaderDeskNav from "@/components/HeaderDeskNav.vue";
+import HeaderCartButton from "@/components/HeaderCartButton.vue";
+import SelectLoc from "@/components/SelectLoc.vue";
 export default {
   data() {
     return {
-      isActive: false
+      lastItem: true,
+      links: [
+        {
+          key: 1,
+          link: "/",
+          title: "Головна"
+        },
+        {
+          key: 2,
+          link: "#",
+          title: "Меню"
+        },
+        {
+          key: 3,
+          link: "/gallery",
+          title: "Фотогалерея"
+        },
+        {
+          key: 4,
+          link: "#",
+          title: "Новини"
+        },
+        {
+          key: 5,
+          link: "#",
+          title: "Контакти"
+        }
+      ]
     };
   },
   components: {
-    MobileMenu
+    MobileMenu,
+    HeaderDeskNav,
+    SelectLoc,
+    HeaderCartButton
   }
 };
 </script>
@@ -46,7 +108,9 @@ export default {
 @import "@/assets/scss/_variables.scss";
 
 .ba-vertical-align {
+  display: flex;
   align-items: center;
+  justify-content: center;
 }
 .ba-header {
   background: $light_olive;
@@ -61,6 +125,12 @@ export default {
 
   &__logo {
   }
+  &__desk-right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
 }
 
 .ba-logo {
@@ -69,6 +139,9 @@ export default {
   &__link {
     display: flex;
     align-items: center;
+    &:hover {
+      opacity: 0.7;
+    }
   }
 
   // .ba-logo__img
@@ -76,6 +149,13 @@ export default {
   &__img {
     object-fit: contain;
     max-width: 88px;
+    @media screen and (min-width: 1024px) {
+      max-width: 145px;
+    }
   }
+}
+
+.ba-wrap-single {
+  width: 24%;
 }
 </style>

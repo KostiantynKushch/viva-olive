@@ -26,11 +26,13 @@ export default {};
 .locations {
   font-size: 20px;
   border: none;
+  outline: none;
   background: transparent;
   margin-left: 8px;
   cursor: pointer;
-  &:hover {
-    color: $light_olive;
+  &:hover,
+  &:focus {
+    color: $dark_olive;
   }
 }
 </style>
