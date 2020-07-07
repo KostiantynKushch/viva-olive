@@ -41,15 +41,37 @@ export default {
   padding: 0;
   outline: none;
   position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 3px;
+    width: 100%;
+    border-radius: 5px;
+    background: $for_light_bg;
+    transition: all 0.3s;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 3px;
+    width: 100%;
+    border-radius: 5px;
+    background: $for_light_bg;
+    transition: all 0.3s;
+  }
 
   &:hover,
   &:focus {
     .ba-hamburger__stick {
-      background: rgba($color: $dark_olive, $alpha: 1);
-      &:before,
-      &:after {
-        background: $dark_olive;
-      }
+      background: $dark_olive;
+    }
+    &:before,
+    &:after {
+      background: $dark_olive;
     }
   }
 
@@ -57,30 +79,19 @@ export default {
     height: 3px;
     width: 100%;
     border-radius: 5px;
-    background: rgba($color: $for_light_bg, $alpha: 1);
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 3px;
-      width: 100%;
-      border-radius: 5px;
-      background: $for_light_bg;
-    }
-    &:after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      height: 3px;
-      width: 100%;
-      border-radius: 5px;
-      background: $for_light_bg;
-    }
+    background: $for_light_bg;
+    transition: all 0.3s;
   }
   &--active {
     .ba-hamburger__stick {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    &:before {
+      transform: rotate(34deg) translateY(11px) translateX(7px);
+    }
+    &:after {
+      transform: rotate(-33deg) translateY(-11px) translateX(7px);
     }
   }
 }
