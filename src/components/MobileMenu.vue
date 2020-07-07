@@ -64,6 +64,10 @@ export default {
 .ba-mob-menu {
   // .ba-mob-menu__hamb
 
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
   &__hamb {
     text-align: right;
   }

@@ -1,6 +1,6 @@
 <template>
   <div class="ba-social">
-    <a v-for="item in socialButtons" :key="item.key" :href="item.link">
+    <a v-for="item in socialButtons" :key="item.key" :href="item.link" class="ba-social__link">
       <svg class="icon">
         <use :xlink:href="require('@/assets/icons/sprite.svg')+item.icon" />
       </svg>
@@ -56,9 +56,26 @@ export default {
 };
 </script>
 
-<style>
-.icon {
-  width: 40px;
-  height: 40px;
+<style lang="scss" scoped>
+@import "@/assets/scss/_variables.scss";
+
+.ba-social {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 210px;
+  margin-right: -30px;
+  &__link {
+    padding-right: 30px;
+    margin-bottom: 26px;
+    .icon {
+      width: 40px;
+      height: 40px;
+    }
+    &:hover {
+      opacity: 0.6;
+    }
+  }
 }
 </style>

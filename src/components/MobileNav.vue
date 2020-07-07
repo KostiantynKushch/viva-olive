@@ -107,6 +107,12 @@ export default {
   // .ba-mobnav__location
 
   &__location {
+    margin-bottom: 66px;
+  }
+  &__social {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
   }
 }
 </style>
