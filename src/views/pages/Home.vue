@@ -1,7 +1,7 @@
 <template>
   <main>
+	 <Intro />
     <Hero />
-    <Intro />
     <Menu />
     <Season />
     <Booking />
