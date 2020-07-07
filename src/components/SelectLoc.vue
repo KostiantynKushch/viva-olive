@@ -19,9 +19,18 @@ export default {};
 <style lang="scss" scoped>
 @import "@/assets/scss/_variables.scss";
 
+.ba-select-loc {
+  display: flex;
+  align-items: center;
+}
+
 .icon {
   width: 10px;
   height: 15px;
+  @media screen and (min-width: 1024px) {
+    width: 17px;
+    height: 25px;
+  }
 }
 .locations {
   font-size: 20px;
