@@ -74,7 +74,7 @@ export default {
         },
         {
           key: 2,
-          link: "#",
+          link: "/menu",
           title: "Меню"
         },
         {
@@ -84,12 +84,12 @@ export default {
         },
         {
           key: 4,
-          link: "#",
+          link: "/news",
           title: "Новини"
         },
         {
           key: 5,
-          link: "#",
+          link: "/contact",
           title: "Контакти"
         }
       ]

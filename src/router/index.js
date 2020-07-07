@@ -14,6 +14,22 @@ const routes = [
 		path: '/gallery',
 		name: 'Фотогалерея',
 		component: () => import('../views/pages/Gallery.vue')
+	},
+	{
+		path: '/menu',
+		name: 'Меню',
+		component: () => import('../views/pages/Menu.vue')
+
+	},
+	{
+		path: '/news',
+		name: 'Новини',
+		component: () => import('../views/pages/News.vue')
+	},
+	{
+		path: '/contact',
+		name: 'Контакти',
+		component: () => import('../views/pages/Contact.vue')
 	}
 ]
 

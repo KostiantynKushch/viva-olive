@@ -20,8 +20,10 @@ export default {};
 @import "@/assets/scss/_variables.scss";
 
 .ba-select-loc {
-  display: flex;
-  align-items: center;
+  @media screen and (min-width: 1024px) {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .icon {
