@@ -12,7 +12,7 @@
 
             <div class="ba-col-small-8 ba-col-medium-10">
               <div class="ba-header__right-part">
-                <MobileMenu />
+                <MobileMenu :links="navLinks.links" />
               </div>
               <!-- /.ba-header__right-part -->
             </div>
@@ -24,7 +24,7 @@
         <div v-else class="ba-wrap-res ba-wrap-res--desk">
           <div class="ba-row">
             <div class="ba-col-5 ba-vertical-align">
-              <HeaderDeskNav :links="links" />
+              <HeaderDeskNav :links="navLinks.links" />
             </div>
             <!-- /.ba-col-5 -->
             <div class="ba-col-2 ba-vertical-align">
@@ -36,7 +36,7 @@
             <div class="ba-col-5 ba-vertical-align">
               <div class="ba-header__desk-right">
                 <div class="ba-wrap-single">
-                  <HeaderDeskNav :links="links" :lastItem="lastItem" />
+                  <HeaderDeskNav :links="navLinks.links" :lastItem="lastItem" />
                 </div>
                 <!-- /.ba-wrap -->
                 <HeaderCartButton />
@@ -63,36 +63,14 @@ import HeaderDeskNav from "@/components/HeaderDeskNav.vue";
 import HeaderCartButton from "@/components/HeaderCartButton.vue";
 import SelectLoc from "@/components/SelectLoc.vue";
 export default {
+  props: {
+    navLinks: {
+      type: Object
+    }
+  },
   data() {
     return {
-      lastItem: true,
-      links: [
-        {
-          key: 1,
-          link: "/",
-          title: "Головна"
-        },
-        {
-          key: 2,
-          link: "/menu",
-          title: "Меню"
-        },
-        {
-          key: 3,
-          link: "/gallery",
-          title: "Фотогалерея"
-        },
-        {
-          key: 4,
-          link: "/news",
-          title: "Новини"
-        },
-        {
-          key: 5,
-          link: "/contact",
-          title: "Контакти"
-        }
-      ]
+      lastItem: true
     };
   },
   components: {

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header></Header>
+    <Header :navLinks="pages"></Header>
     <router-view />
     <Footer></Footer>
   </div>
@@ -10,9 +10,25 @@
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 export default {
+  data() {
+    return {
+      pages: {},
+      locations: {}
+    };
+  },
   components: {
     Header,
     Footer
+  },
+
+  created() {
+    fetch("data/pages.json")
+      .then(result => result.json())
+      .then(data => (this.pages = data));
+
+    fetch("data/locations.json")
+      .then(result => result.json())
+      .then(data => console.log(data));
   }
 };
 </script>

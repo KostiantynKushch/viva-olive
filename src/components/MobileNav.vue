@@ -25,36 +25,13 @@
 import SelectLoc from "@/components/SelectLoc.vue";
 import SocialMedia from "@/components/SocialMedia.vue";
 export default {
+  props: {
+    links: {
+      type: Array
+    }
+  },
   data() {
-    return {
-      links: [
-        {
-          key: 1,
-          link: "/",
-          title: "Головна"
-        },
-        {
-          key: 2,
-          link: "/menu",
-          title: "Меню"
-        },
-        {
-          key: 3,
-          link: "/gallery",
-          title: "Фотогалерея"
-        },
-        {
-          key: 4,
-          link: "/news",
-          title: "Новини"
-        },
-        {
-          key: 5,
-          link: "/contact",
-          title: "Контакти"
-        }
-      ]
-    };
+    return {};
   },
   methods: {},
   components: {

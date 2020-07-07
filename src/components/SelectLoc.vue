@@ -4,16 +4,37 @@
       <use xlink:href="@/assets/icons/sprite.svg#location" />
     </svg>
     <select name="locations" class="locations">
-      <option value="poltava">Полтава</option>
-      <option value="poltava">Кременчук</option>
-      <option value="poltava">Суми</option>
+      <option
+        v-for="location in locations"
+        :key="location.key"
+        :value="location.name"
+      >{{location.name}}</option>
     </select>
   </div>
   <!-- /.ba-select-loc -->
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      locations: [
+        {
+          key: 1,
+          name: "Полтава"
+        },
+        {
+          key: 2,
+          name: "Кременчук"
+        },
+        {
+          key: 3,
+          name: "Суми"
+        }
+      ]
+    };
+  }
+};
 </script>
 
 <style lang="scss" scoped>

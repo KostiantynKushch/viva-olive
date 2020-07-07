@@ -2,7 +2,7 @@
   <div class="ba-mob-menu">
     <Hamburger class="ba-mob-menu__hamb" />
     <transition name="slide-fade">
-      <MobileNav v-if="showMobNav" />
+      <MobileNav v-if="showMobNav" :links="links" />
     </transition>
   </div>
   <!-- /.ba-mob-menu -->
@@ -15,6 +15,11 @@ import Hamburger from "@/components/Hamburger.vue";
 import MobileNav from "@/components/MobileNav.vue";
 
 export default {
+  props: {
+    links: {
+      type: Array
+    }
+  },
   data() {
     return {
       showMobNav: false
