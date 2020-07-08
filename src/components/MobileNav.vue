@@ -52,6 +52,7 @@ export default {
   width: 100vw;
   height: 100vh;
   padding-right: 30px;
+  z-index: 999;
   // .ba-mobnav__list
 
   &__list {
