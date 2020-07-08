@@ -38,8 +38,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/_variables.scss";
-
 .ba-select-loc {
   @media screen and (min-width: 1024px) {
     display: flex;

@@ -83,8 +83,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/_variables.scss";
-
 .ba-vertical-align {
   display: flex;
   align-items: center;

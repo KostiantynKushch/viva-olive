@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header :navLinks="pages"></Header>
+    <Header v-if="pages" :navLinks="pages"></Header>
     <router-view />
     <Footer></Footer>
   </div>
@@ -12,8 +12,8 @@ import Footer from "@/components/Footer.vue";
 export default {
   data() {
     return {
-      pages: {},
-      locations: {}
+      pages: null,
+      locations: null
     };
   },
   components: {
