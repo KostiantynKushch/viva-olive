@@ -41,7 +41,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped >
+<style lang="scss" >
 .ba-mobnav {
   position: absolute;
   background: $background;
@@ -50,7 +50,7 @@ export default {
   width: 100vw;
   height: 100vh;
   padding-right: 30px;
-  z-index: 999;
+  z-index: 9;
   // .ba-mobnav__list
 
   &__list {

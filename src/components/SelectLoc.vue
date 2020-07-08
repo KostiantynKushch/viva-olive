@@ -37,7 +37,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .ba-select-loc {
   @media screen and (min-width: 1024px) {
     display: flex;

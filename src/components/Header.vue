@@ -82,7 +82,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .ba-vertical-align {
   display: flex;
   align-items: center;
@@ -94,7 +94,7 @@ export default {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 999;
+  z-index: 9;
   &__inner {
     padding: 5px 0;
   }

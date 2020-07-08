@@ -56,7 +56,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .ba-social {
   display: flex;
   align-items: flex-end;

@@ -33,7 +33,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .ba-desk-nav {
   // .ba-desk-nav__navigation
 
