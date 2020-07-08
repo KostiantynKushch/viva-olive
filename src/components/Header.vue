@@ -90,7 +90,11 @@ export default {
 }
 .ba-header {
   background: $light_olive;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
   &__inner {
     padding: 5px 0;
   }

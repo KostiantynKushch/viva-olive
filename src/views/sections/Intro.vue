@@ -13,8 +13,16 @@
     </div>
     <!-- /.ba-intro__inner -->
     <div class="ba-intro__scroll">
-      <a class="ba-intro__scroll--text" href="#welcome" v-smooth-scroll="{ duration: 1000}">Scroll</a>
-      <a href="#welcome" v-smooth-scroll="{ duration: 1000}" class="ba-intro__scroll--link">
+      <a
+        class="ba-intro__scroll--text"
+        href="#welcome"
+        v-smooth-scroll="{duration: 1000, offset: -70}"
+      >Scroll</a>
+      <a
+        href="#welcome"
+        v-smooth-scroll="{duration: 1000, offset: -70}"
+        class="ba-intro__scroll--link"
+      >
         <img class="ba-intro__scroll--link-img" src="../../assets/img/Scroll.png" alt="Scroll" />
       </a>
     </div>
@@ -25,7 +33,19 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      settings: {
+        duration: 1000,
+        offset: -70
+      }
+    };
+  },
+  created() {
+    console.log(this.settings);
+  }
+};
 </script>
 
 <style lang='scss'>
