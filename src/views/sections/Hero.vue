@@ -1,5 +1,5 @@
 <template>
-  <section class="ba-hero">
+  <section class="ba-hero" id="welcome">
     <div class="ba-container">
       <div class="ba-hero__inner">
         <h5 class="ba-hero__inner--title">Ресторан "VIVA OLIVE" запрошує всіх бажаючих на обід!</h5>

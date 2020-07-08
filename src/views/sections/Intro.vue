@@ -13,8 +13,8 @@
     </div>
     <!-- /.ba-intro__inner -->
     <div class="ba-intro__scroll">
-      <a class="ba-intro__scroll--text" href="#">Scroll</a>
-      <a href="#" class="ba-intro__scroll--link">
+      <a class="ba-intro__scroll--text" href="#welcome" v-smooth-scroll="{ duration: 1000}">Scroll</a>
+      <a href="#welcome" v-smooth-scroll="{ duration: 1000}" class="ba-intro__scroll--link">
         <img class="ba-intro__scroll--link-img" src="../../assets/img/Scroll.png" alt="Scroll" />
       </a>
     </div>
