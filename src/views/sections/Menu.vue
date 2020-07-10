@@ -2,7 +2,121 @@
   <section class="ba-menu">
     <div class="ba-container">
       <div class="ba-menu__inner">
-        <h5>Menu section goes here</h5>
+        <h2 class="ba-section-title ba-menu__title">Меню</h2>
+        <!-- /.ba-section-title ba-menu__title -->
+        <div class="ba-menu__wrap">
+          <div class="ba-menu__categories ba-categories">
+            <ul class="ba-categories__list">
+              <li class="ba-categories__item">
+                <a
+                  href="#"
+                  @click.prevent="getCategory"
+                  class="ba-categories__link ba-categories__link--active"
+                >Закуски</a>
+              </li>
+              <!-- /.ba-categories__item -->
+              <li class="ba-categories__item">
+                <a href="#" @click.prevent="getCategory" class="ba-categories__link">Салати</a>
+              </li>
+              <!-- /.ba-categories__item -->
+              <li class="ba-categories__item">
+                <a href="#" @click.prevent="getCategory" class="ba-categories__link">Перші страви</a>
+              </li>
+              <!-- /.ba-categories__item -->
+              <li class="ba-categories__item">
+                <a href="#" @click.prevent="getCategory" class="ba-categories__link">Паста</a>
+              </li>
+              <!-- /.ba-categories__item -->
+              <li class="ba-categories__item">
+                <a href="#" @click.prevent="getCategory" class="ba-categories__link">Равіолі</a>
+              </li>
+              <!-- /.ba-categories__item -->
+              <li class="ba-categories__item">
+                <a href="#" @click.prevent="getCategory" class="ba-categories__link">Піца</a>
+              </li>
+              <!-- /.ba-categories__item -->
+              <li class="ba-categories__item">
+                <a href="#" @click.prevent="getCategory" class="ba-categories__link">Десерти</a>
+              </li>
+              <!-- /.ba-categories__item -->
+              <li class="ba-categories__item">
+                <a href="#" @click.prevent="getCategory" class="ba-categories__link">Напої</a>
+              </li>
+              <!-- /.ba-categories__item -->
+              <li class="ba-categories__item">
+                <a href="#" @click.prevent="getCategory" class="ba-categories__link">Вкусняхи</a>
+              </li>
+              <!-- /.ba-categories__item -->
+              <li class="ba-categories__item">
+                <a href="#" @click.prevent="getCategory" class="ba-categories__link">Бой посуди</a>
+              </li>
+              <!-- /.ba-categories__item -->
+            </ul>
+            <!-- /.ba-categories__list -->
+          </div>
+          <!-- /.ba-menu__categories -->
+          <div class="ba-menu__list ba-list">
+            <div class="ba-list__header">
+              <h4 class="ba-list__column-name">Назва страви</h4>
+              <h4 class="ba-list__column-weight">Вага</h4>
+              <h4 class="ba-list__column-price">Ціна</h4>
+              <mq-layout mq="tablet+">
+                <h4 class="ba-list__column-order">Замовити</h4>
+              </mq-layout>
+            </div>
+            <!-- /.ba-list__header -->
+            <div class="ba-list__product ba-product">
+              <div class="ba-product__info">
+                <h5 class="ba-product__name">Прошутто крудо з грушею</h5>
+              </div>
+              <p class="ba-product__weight">165 г</p>
+              <!-- /.ba-product__weight -->
+              <p class="ba-product__price">71 грн.</p>
+              <!-- /.ba-product__price -->
+              <div class="ba-product__order">
+                <h4 class="ba-list__column-order" v-if="$mq === 'mobile'">Замовити</h4>
+                <div class="ba-product__buttons">
+                  <button aria-label="reduce quantity" class="ba-quantity ba-quantity--decr"></button>
+                  <p class="ba-product__quantity">0</p>
+                  <!-- /.ba-product__quantity -->
+                  <button aria-label="increase quantity" class="ba-quantity ba-quantity--incr"></button>
+                </div>
+                <!-- /.ba-product__buttons -->
+              </div>
+              <!-- /.ba-product__order -->
+            </div>
+            <!-- /.ba-product -->
+            <div class="ba-list__product ba-product">
+              <div class="ba-product__info">
+                <h5 class="ba-product__name">Італійські м'ясні делікатеси</h5>
+                <span
+                  class="ba-product__description"
+                >(прошутто крудо, брезаола, салямі, салямі гостра)</span>
+              </div>
+
+              <!-- /.ba-product__description -->
+              <!-- /.ba-product__name -->
+              <p class="ba-product__weight">120 г</p>
+              <!-- /.ba-product__weight -->
+              <p class="ba-product__price">119 грн.</p>
+              <!-- /.ba-product__price -->
+              <div class="ba-product__order">
+                <h4 class="ba-list__column-order" v-if="$mq === 'mobile'">Замовити</h4>
+                <div class="ba-product__buttons">
+                  <button aria-label="reduce quantity" class="ba-quantity ba-quantity--decr"></button>
+                  <p class="ba-product__quantity">0</p>
+                  <!-- /.ba-product__quantity -->
+                  <button aria-label="increase quantity" class="ba-quantity ba-quantity--incr"></button>
+                </div>
+                <!-- /.ba-product__buttons -->
+              </div>
+              <!-- /.ba-product__order -->
+            </div>
+            <!-- /.ba-product -->
+          </div>
+          <!-- /.ba-menu__list ba-list -->
+        </div>
+        <!-- /.ba-menu__wrap -->
       </div>
       <!-- /.ba-menu__inner -->
     </div>
@@ -12,8 +126,249 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      titleBg: "require('@/assets/img/sprite.jpg')"
+    };
+  },
+  methods: {
+    getCategory(event) {
+      console.log(event.target.innerHTML);
+    }
+  }
+};
 </script>
 
-<style>
+<style lang="scss">
+.ba-menu {
+  padding-top: 100px;
+  // .ba-menu__inner
+
+  &__inner {
+  }
+
+  &__wrap {
+    @media screen and (min-width: 1024px) {
+      width: 70%;
+      margin-left: 30%;
+    }
+  }
+
+  // .ba-menu__title
+
+  &__title {
+    text-align: center;
+    color: $background;
+    position: relative;
+    margin-bottom: 35px;
+    @media screen and (min-width: 1440px) {
+      margin-bottom: 92px;
+    }
+    &:before {
+      content: "";
+      position: absolute;
+      top: -80%;
+      left: 0;
+      right: 0;
+      height: 72px;
+      background: url("../../assets/img/section_bg_title_right.png") no-repeat
+        center;
+      background-color: transparent;
+      background-size: contain;
+      z-index: -1;
+      @media screen and (min-width: 1440px) {
+        top: -100%;
+
+        height: 152px;
+      }
+    }
+  }
+
+  // .ba-menu__categories
+
+  &__categories {
+  }
+
+  // .ba-menu__list
+
+  &__list {
+  }
+}
+
+.ba-section-title {
+}
+.ba-categories {
+  // .ba-categories__list
+  width: 100%;
+  overflow-x: scroll;
+
+  &::-webkit-scrollbar-track {
+    //  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border: 1.2px solid #e0e0e0;
+    border-radius: 15px;
+    background: $background;
+  }
+  &::-webkit-scrollbar {
+    width: 12px;
+    background: $background;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 15px;
+    //  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #d34606;
+  }
+
+  &__list {
+    list-style: none;
+    padding-left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  // .ba-categories__item
+
+  &__item {
+    white-space: nowrap;
+  }
+  &__item + &__item {
+    margin-left: 35px;
+  }
+  // .ba-categories__link
+  &__link {
+    text-decoration: none;
+    color: #000;
+    &:hover {
+      color: $dark_olive;
+    }
+
+    &--active {
+      font-weight: 700;
+    }
+  }
+}
+
+.ba-list {
+  // .ba-list__header
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  // .ba-list__column-name
+
+  &__column-name {
+    width: 60%;
+  }
+  // .ba-list__column-weight
+
+  &__column-weight {
+    width: 20%;
+  }
+
+  // .ba-list__column-price
+
+  &__column-price {
+    width: 20%;
+  }
+
+  // .ba-list__column-order
+
+  &__column-order {
+  }
+
+  // .ba-list__product
+
+  &__product {
+  }
+}
+
+.ba-product {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  font-size: 14px;
+  @media screen and (min-width: 640px) {
+    flex-wrap: nowrap;
+    font-size: 20px;
+  }
+  // .ba-product__name
+
+  &__name {
+    margin: 0;
+  }
+
+  &__info {
+    width: 60%;
+    padding-right: 20px;
+  }
+
+  // .ba-product__weight
+
+  &__weight {
+    width: 20%;
+  }
+
+  // .ba-product__price
+
+  &__price {
+    width: 20%;
+  }
+
+  // .ba-product__order
+
+  &__order {
+    width: 100%;
+    text-align: center;
+    @media screen and (min-width: 640px) {
+      width: initial;
+    }
+  }
+
+  // .ba-product__quantity
+
+  &__quantity {
+    font-size: 22px;
+    margin: 0 12px;
+  }
+
+  // .ba-product__description
+
+  &__description {
+  }
+  &__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 35px;
+    @media screen and (min-width: 640px) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.ba-quantity {
+  border: none;
+  width: 50px;
+  height: 50px;
+  outline: none;
+  background-size: cover;
+
+  &:hover,
+  &:focus {
+    opacity: 0.6;
+  }
+  &--decr {
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAN+SURBVHgB7ZmxThtBEEDHURo6NxRUXI+ELSgpOL4gRqKP/8BGQlCeUyFoEvEDQaIECadEFD4KEAUgGxCUPlcUFLhzeZnn3Ekn4uRMvLco0j3pZHNednd2ZmdnZkVycnJycnL+nYIYJAzDon5Ub25uSp1Op/z8/OwMBgPeydTUVH96ejpYWFgISqXSD33lFwqFQAxhRBAVwD06OvLOz8/dZrMp/X5fXNcVx3GkWBzKMXzXbrclCILh3/y+sbHhz83NfVGBfHlPVACnpeikQp1wuLW19fLw8NDS93V9ypGG4rZFBNanenp6eux5XqiChtVqNby9vT2mL3kPdODazs7OSyxAt9ttJCc+xv87+jT29va6CEQfLIDYpNfreWiB5+Li4ttbBHgNAl1dXe3TV6VSCXVBPLEBQpTL5bBWq4UmV5C+MDf6zlwYzIlVY0BsXQxDn/V6fajpzMwME8COMx3k1zh1xmD/ZeIA1HUesymvr6+/S8aw73Aivu+3xCS4TdwkHsaGm8R5JLTviinu7+9baAN3KZbAnaOVw8NDM1pBA2ij0eCYsHdoxVph80/i3pMdVtHGyclJUyyTsITJnQvhQ9RZVSyDAJjXOA7mQ1oDPXUdgj8lEPv4BJdE0mkNUwUhFNfTlq9tsU/AIjKHtIYf0xqQTxCKa6jdH/W7Br/h2dmZTMLy8rKsrKz8llIwpjoZiXOav5Gqkf+FVI2Q2T09PZFLFEdpZdRKmoIx19fXZWZmpp/WNlUjpKdRVueIfcpklcwhrWGqIPPz8x2Nefjqin0cFnFxcbEnk4Ivn52dDTmcxDKkxOOeYeNs9v3V1VU5ODgoGwkVxoRwSIsZFc4RxRcTELhxwhLIiSVUEA9tGLUEQmlC6qhAkLlW0AYpA8Gq0TAeSHLQyuXl5VfJGGIrtEGcJ6Zhlba3t22kurWE9h3JgjifjnKEz2IY+iTvocCReY2LDU/JJkq0TJaDaixQVA5qiA0YiFVDO9jzJCaA82DfxQU/m54xnkB9c3PzhU0ZFSW8twiEABT72As4kaj8Y7dkmpiMg2fBTSIQ5sZpzEkcFaxfF7E5VOsUumMB0AIecdKNbexa4fHx0dvd3XWjuGx4pUBClrxWIG7id96pacrS0pK/trZm5FrB9EWPox/u3d3dJ1LkURc9esnT1suejr7a/1OylpOTk5OTY5uf05KqWn7tko4AAAAASUVORK5CYII=");
+  }
+
+  &--incr {
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAPVSURBVHgB7Vk9SORAFH57XGPlNhZ26QU3aCUWxsb2VrAV01kmgmiZtRJFONFGqwtYKrjWChsLxUIl62+52crCwnSWufflEli8PSfR2ZGDfBCyO5m/772ZN++9ISpQoECBAgU+jhJJRBRFZX6Z19fXlWazqT8/P2uvr68oo76+vnBgYCAYGRkJKpXKERd5pVIpIEmQQoQJGAcHB87Z2ZlRr9cpDEMyDIM0TaNyOeYRl/m+T0EQxP/xfXFx0RsaGlphQh59JZiA1mDwpCKecLS8vPzy8PDQ4HKbHz3RUFq3DML8mMfHx4eO40RMNDJNM7q5uTlEX/QV4IGttbW1l5RAq9WqdU48Q3uNn9rW1lYLhNAHBEAq0W63HWgBz/n5+WYeAm8BQpeXly76qlarEQvEIRUACV3XI8uyIpkSRF9Ybui752SwnCA1DIi1TpKBPm3bjjXds2WGJYB13NNB/oxjYwzsv54YADadh9iUV1dXv/K0Y6MW4cnTBvsORsTzvAbJBMwmzCQsTF4p1Wq1CE+eNjAeHdo3SBbu7u4a0AbMJeXER4gAMOfQyv7+fiatfBNVgAY2NjagEfx1SRFYcJvz8/MhvIUs5l1IhGHwWqWxsbEjmb6RCDxWODs768PlYZii+kIit7e3P/Cempqqk2KwH3YEHw1OqKiukAifuhqcP0ZA6uHBuYQnLaooJAJXnE9b/PRJPQIIEXMQVfwuqoB4Aq441my37zgjTk9PRd3Qe5ZrYmKCJicn/wopMCa3ozSmeQ9ZNvt/AaFGENk9PT0hlih300o3SXYi1QS/cwdxGHNhYYEGBwdDUV2hRhCeJlGdRuqhI6rEHEQVhUSGh4ebOEcYBqmHBiGOjo62RRWFRLgTv7+/n+7v73+QYpycnMRjsjCFZ1iWze5OT0/T3t6e/plIMC/gGrF7UsU5wvBE9YVEsMHHx8e93d3dMqtZZUw957punGnJ4hplMr8zMzMrOBR3dnYsFVqBNra3t01oA+kikgkEOXCrLy4ufuZp95HACsEbwgakiUg2IKXV1VUVoa6FMZL0kEa9QBpPI0HAmCPJQJ84QJHg6HmOC5EbUjYYUHI6yIKAknRQjVQAA0Fq0A7W82eWAIwH9l2a8FNGomMC9tLS0gs2ZZKUcPIQAgEk+7AXYESS9I/alGnHZDRYFmRYQAjLDQlqJNqShPXbJDYOVRuJ7pQAtACL+NmNLe1a4fHx0VlfXzcSvyy+UsDZ03mtAL8J31HGS5Nw0OKMknGtIPuiR+OXgTgfIXK3ix6+5PH5sqfJRe6/grUCBQoUKFBANX4DVk2mRZoz0toAAAAASUVORK5CYII=");
+  }
+}
 </style>

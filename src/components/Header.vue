@@ -82,9 +82,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-@import "@/assets/scss/_variables.scss";
-
+<style lang="scss" >
 .ba-vertical-align {
   display: flex;
   align-items: center;
@@ -92,7 +90,11 @@ export default {
 }
 .ba-header {
   background: $light_olive;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
   &__inner {
     padding: 5px 0;
   }

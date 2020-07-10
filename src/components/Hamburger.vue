@@ -30,9 +30,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-@import "@/assets/scss/_variables.scss";
-
+<style lang="scss" >
 .ba-hamburger {
   border: none;
   background: transparent;
