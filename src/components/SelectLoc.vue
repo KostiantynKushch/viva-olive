@@ -1,5 +1,5 @@
 <template>
-  <div class="ba-select-loc">
+  <div v-if="locations" class="ba-select-loc">
     <svg class="icon">
       <use xlink:href="@/assets/icons/sprite.svg#location" />
     </svg>
@@ -18,21 +18,17 @@
 export default {
   data() {
     return {
-      locations: [
-        {
-          key: 1,
-          name: "Полтава"
-        },
-        {
-          key: 2,
-          name: "Кременчук"
-        },
-        {
-          key: 3,
-          name: "Суми"
-        }
-      ]
+      locations: null
     };
+  },
+
+  created() {
+    fetch("data/locations.json")
+      .then(result => result.json())
+      .then(data => {
+        this.locations = data.locations;
+        console.log(this.locations);
+      });
   }
 };
 </script>
