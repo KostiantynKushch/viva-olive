@@ -1,7 +1,6 @@
 {
   "menu": {
     "title": "Меню",
-    "background": "./img/home/menu-bg.png",
     "menu": {
       "categories": [
         {
@@ -221,12 +220,60 @@
           "price": "61 грн"
         },
         {
+          "id": 15,
+          "categoryId": 3,
+          "name": "Фірмовий салат від шефа",
+          "description": "прошутто крудо, сир Моцарелла, мікс салатів, помідори, грінки, в'ялені томати, морква,синя цибуля",
+          "weight": "340 г",
+          "price": "109 грн"
+        },
+        {
+          "id": 16,
+          "categoryId": 3,
+          "name": "Нісуаз з куркою та яйцем",
+          "description": "грильована курка, мікс салатів, помідори, огірки, яйце,синя цибуля, гірчична заправка",
+          "weight": "240 г",
+          "price": "76 грн"
+        },
+        {
           "id": 17,
           "categoryId": 4,
           "name": "Суп з домашньою локшиною та фрикадельками",
           "description": "з грінками",
           "weight": "250 г",
           "price": "38 грн"
+        },
+        {
+          "id": 16,
+          "categoryId": 4,
+          "name": "Крем-суп з грибами",
+          "description": "з грінками",
+          "weight": "250 г",
+          "price": "49 грн"
+        },
+        {
+          "id": 17,
+          "categoryId": 4,
+          "name": "Гарбузовий крем-суп з лососем",
+          "description": "з грінками",
+          "weight": "250 г",
+          "price": "59 грн"
+        },
+        {
+          "id": 18,
+          "categoryId": 4,
+          "name": "Уха від шефа",
+          "description": "з грінками",
+          "weight": "250 г",
+          "price": "59 грн"
+        },
+        {
+          "id": 19,
+          "categoryId": 4,
+          "name": "Сочевичний крем-суп",
+          "description": "помідори, італійський сир Моцарелла, соус Песто",
+          "weight": "250 г",
+          "price": "45 грн"
         },
         {
           "id": 20,
@@ -253,6 +300,14 @@
           "price": "19 грн"
         },
         {
+          "id": 23,
+          "categoryId": 7,
+          "name": "Хлібний кошик",
+          "description": "чіабатта,гріссіні,житній хліб",
+          "weight": "180 г",
+          "price": "29 грн"
+        },
+        {
           "id": 24,
           "categoryId": 8,
           "name": "Фірмова Віва Оліве",
@@ -267,6 +322,14 @@
           "description": "",
           "weight": "40 г",
           "price": "15 грн"
+        },
+        {
+          "id": 26,
+          "categoryId": 9,
+          "name": "Прошутто крудо/котто,бекон,салямі/гостра,брезаола",
+          "description": "",
+          "weight": "40 г",
+          "price": "31 грн"
         },
         {
           "id": 27,
@@ -299,6 +362,126 @@
           "description": "",
           "weight": "100 г",
           "price": "61 грн"
+        },
+        {
+          "id": 30,
+          "categoryId": 13,
+          "name": "Узвар",
+          "description": "",
+          "weight": "200 мл",
+          "price": "17 грн"
+        },
+        {
+          "id": 31,
+          "categoryId": 14,
+          "name": "Мохіто безалкогольний",
+          "description": "Sprite, лайм, м'ята, цукор тростинний, лід",
+          "weight": "440 мл",
+          "price": "41 грн"
+        },
+        {
+          "id": 32,
+          "categoryId": 15,
+          "name": "Hoegaarden",
+          "description": "розлив",
+          "weight": "0,5 л",
+          "price": "65 грн"
+        },
+        {
+          "id": 33,
+          "categoryId": 16,
+          "name": "Вино домашнє червоне, біле сухе 0,5 л",
+          "description": "",
+          "weight": "1 пл",
+          "price": "150 грн"
+        },
+        {
+          "id": 34,
+          "categoryId": 17,
+          "name": "Селект \"Каберне\" червоне сухе 0,75 л",
+          "description": "",
+          "weight": "1 пл",
+          "price": "199 грн"
+        },
+        {
+          "id": 35,
+          "categoryId": 18,
+          "name": "Горілка Козацька Рада \"Класична\" 0.5 л",
+          "description": "",
+          "weight": "1 пл",
+          "price": "220 грн"
+        },
+        {
+          "id": 36,
+          "categoryId": 19,
+          "name": "Вермут Маренго",
+          "description": "",
+          "weight": "50 мл",
+          "price": "16 грн"
+        },
+        {
+          "id": 37,
+          "categoryId": 19,
+          "name": "Martini Bianko",
+          "description": "",
+          "weight": "50 мл",
+          "price": "33 грн"
+        },
+        {
+          "id": 38,
+          "categoryId": 20,
+          "name": "Bushmills original",
+          "description": "",
+          "weight": "50 мл",
+          "price": "67 грн"
+        },
+        {
+          "id": 39,
+          "categoryId": 21,
+          "name": "Коньяк Легенда Вірменії 5 зірок",
+          "description": "",
+          "weight": "50 мл",
+          "price": "37 грн"
+        },
+        {
+          "id": 40,
+          "categoryId": 22,
+          "name": "Capitan Morgan Gold золотий, White білий",
+          "description": "",
+          "weight": "50 мл",
+          "price": "42 грн"
+        },
+        {
+          "id": 41,
+          "categoryId": 23,
+          "name": "Jose Cuervo Especial Silver",
+          "description": "",
+          "weight": "50 мл",
+          "price": "58 грн"
+        },
+        {
+          "id": 42,
+          "categoryId": 24,
+          "name": "Gordon's",
+          "description": "",
+          "weight": "50 мл",
+          "price": "49 грн"
+        },
+        {
+          "id": 43,
+          "categoryId": 25,
+          "name": "Лікер Jagermeister",
+          "description": "",
+          "weight": "50 мл",
+          "price": "49 грн"
+        },
+        {
+          "id": 44,
+          "categoryId": 25,
+          "name": "Бальзам Riga Black Balsam",
+          "description": "",
+          "weight": "50 мл",
+          "price": "41 грн"
         }
       ]
     }

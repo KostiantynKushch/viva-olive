@@ -1,87 +1,108 @@
 <template>
-  <section v-if="menuSection" class="ba-menu">
-    <div class="ba-container">
-      <div class="ba-menu__inner">
-        <h2 class="ba-section-title ba-menu__title">{{sectionTitle}}</h2>
-        <!-- /.ba-section-title ba-menu__title -->
-        <div class="ba-menu__wrap">
-          <div class="ba-menu__categories ba-categories">
-            <ul class="ba-categories__list">
-              <li
-                v-for="category in filteredCategories"
-                :key="category.id"
-                class="ba-categories__item"
-              >
-                <a
-                  href="#"
-                  @click.prevent="getCategory"
-                  :id="category.id"
-                  class="ba-categories__link"
-                  :class="{'ba-categories__link--active' : activeCat == category.id}"
-                >{{category.name}}</a>
-              </li>
-              <!-- /.ba-categories__item -->
-            </ul>
-            <!-- /.ba-categories__list -->
-          </div>
-          <!-- /.ba-menu__categories -->
-          <div class="ba-menu__list ba-list">
-            <div class="ba-list__header">
-              <h4 class="ba-list__column-name">Назва страви</h4>
-              <h4 class="ba-list__column-weight">Вага</h4>
-              <h4 class="ba-list__column-price">Ціна</h4>
-              <mq-layout mq="tablet+">
-                <h4 class="ba-list__column-order">Замовити</h4>
-              </mq-layout>
-            </div>
-            <!-- /.ba-list__header -->
-
-            <div v-for="dish in filteredDishes" :key="dish.id" class="ba-list__product ba-product">
-              <div class="ba-product__info">
-                <h5 class="ba-product__name">{{dish.name}}</h5>
-                <span class="ba-product__description">{{dish.description}}</span>
-              </div>
-
-              <!-- /.ba-product__description -->
-              <!-- /.ba-product__name -->
-              <p class="ba-product__weight">{{dish.weight}}</p>
-              <!-- /.ba-product__weight -->
-              <p class="ba-product__price">{{dish.price}}</p>
-              <!-- /.ba-product__price -->
-              <div class="ba-product__order">
-                <h4 class="ba-list__column-order" v-if="$mq === 'mobile'">Замовити</h4>
-                <div class="ba-product__buttons">
-                  <button aria-label="reduce quantity" class="ba-quantity ba-quantity--decr"></button>
-                  <p class="ba-product__quantity">0</p>
-                  <!-- /.ba-product__quantity -->
-                  <button aria-label="increase quantity" class="ba-quantity ba-quantity--incr"></button>
-                </div>
-                <!-- /.ba-product__buttons -->
-              </div>
-              <!-- /.ba-product__order -->
-            </div>
-            <!-- /.ba-product -->
-          </div>
-          <!-- /.ba-menu__list ba-list -->
-        </div>
-        <!-- /.ba-menu__wrap -->
-      </div>
-      <!-- /.ba-menu__inner -->
+  <div class="ba-geting-data">
+    <div v-if="loading" class="ba-loading ba-container">
+      <Preloader />
     </div>
-    <!-- /.ba-container -->
-  </section>
-  <!-- /.ba-menu -->
+
+    <div v-if="error" class="error">{{ error }}</div>
+
+    <section
+      v-if="menuSection"
+      class="ba-menu"
+      :style="[ $mq == 'laptop' || $mq == 'desktop' ? { backgroundImage: `url(${sectionBg})`} : {}]"
+    >
+      <div class="ba-container">
+        <div class="ba-menu__inner">
+          <h2 class="ba-section-title ba-menu__title">{{sectionTitle}}</h2>
+          <!-- /.ba-section-title ba-menu__title -->
+          <div class="ba-menu__wrap">
+            <div class="ba-menu__categories ba-categories">
+              <ul class="ba-categories__list">
+                <li
+                  v-for="category in filteredCategories"
+                  :key="category.id"
+                  class="ba-categories__item"
+                >
+                  <a
+                    href="#"
+                    @click.prevent="getCategory"
+                    :id="category.id"
+                    class="ba-categories__link"
+                    :class="{'ba-categories__link--active' : activeCat == category.id}"
+                  >{{category.name}}</a>
+                </li>
+                <!-- /.ba-categories__item -->
+              </ul>
+              <!-- /.ba-categories__list -->
+            </div>
+            <!-- /.ba-menu__categories -->
+            <div class="ba-menu__list ba-list">
+              <div class="ba-list__header">
+                <h4 class="ba-list__column-name">Назва страви</h4>
+                <h4 class="ba-list__column-weight">Вага</h4>
+                <h4 class="ba-list__column-price">Ціна</h4>
+                <mq-layout mq="tablet+">
+                  <h4 class="ba-list__column-order">Замовити</h4>
+                </mq-layout>
+              </div>
+              <!-- /.ba-list__header -->
+
+              <div
+                v-for="dish in filteredDishes"
+                :key="dish.id"
+                class="ba-list__product ba-product"
+              >
+                <div class="ba-product__info">
+                  <h5 class="ba-product__name">{{dish.name}}</h5>
+                  <span
+                    v-if="dish.description != ''"
+                    class="ba-product__description"
+                  >( {{dish.description}} )</span>
+                </div>
+
+                <!-- /.ba-product__description -->
+                <!-- /.ba-product__name -->
+                <p class="ba-product__weight">{{dish.weight}}</p>
+                <!-- /.ba-product__weight -->
+                <p class="ba-product__price">{{dish.price}}</p>
+                <!-- /.ba-product__price -->
+                <div class="ba-product__order">
+                  <h4 class="ba-list__column-order" v-if="$mq === 'mobile'">Замовити</h4>
+                  <div class="ba-product__buttons">
+                    <button aria-label="reduce quantity" class="ba-quantity ba-quantity--decr"></button>
+                    <p class="ba-product__quantity">0</p>
+                    <!-- /.ba-product__quantity -->
+                    <button aria-label="increase quantity" class="ba-quantity ba-quantity--incr"></button>
+                  </div>
+                  <!-- /.ba-product__buttons -->
+                </div>
+                <!-- /.ba-product__order -->
+              </div>
+              <!-- /.ba-product -->
+            </div>
+            <!-- /.ba-menu__list ba-list -->
+          </div>
+          <!-- /.ba-menu__wrap -->
+        </div>
+        <!-- /.ba-menu__inner -->
+      </div>
+      <!-- /.ba-container -->
+    </section>
+    <!-- /.ba-menu -->
+  </div>
+  <!-- /.ba-geting-data -->
 </template>
 
 <script>
-import { EventBus } from "@/main.js";
-
+import Preloader from "@/components/Preloader.vue";
 export default {
   data() {
     return {
-      titleBg: "require('@/assets/img/sprite.jpg')",
-      activeCat: 1,
+      loading: false,
       menuSection: null,
+      error: null,
+      sectionBg: "",
+      activeCat: 1,
       sectionTitle: "",
       categories: {},
       categoryIDs: [],
@@ -93,15 +114,23 @@ export default {
       this.activeCat = event.target.id;
     },
     fetchData() {
+      this.error = this.post = null;
+      this.loading = true;
+
       fetch("data/home-page.json")
         .then(result => result.json())
         .then(data => {
-          //   console.log(data);
-          this.menuSection = data.menu;
-          this.sectionTitle = this.menuSection.title;
-          this.categories = this.menuSection.menu.categories;
-          this.dishes = this.menuSection.menu.dishes;
-          console.log(this.menuSection);
+          if (data == null) {
+            this.error = "Ooops, Nothing found!";
+          } else {
+            this.menuSection = data.menu;
+            this.sectionTitle = this.menuSection.title;
+            this.sectionBg = this.menuSection.background;
+            this.titleBg = this.menuSection.titleBg;
+            this.categories = this.menuSection.menu.categories;
+            this.dishes = this.menuSection.menu.dishes;
+          }
+          this.loading = false;
         });
     },
     getCategoryIDs() {
@@ -158,13 +187,26 @@ export default {
 
       return result;
     }
+  },
+  components: {
+    Preloader
   }
 };
 </script>
 
 <style lang="scss">
+.ba-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .ba-menu {
-  padding-top: 100px;
+  padding: 100px 0;
+  background-repeat: no-repeat;
+  background-position-y: 50%;
+  background-size: 29%;
+  min-height: 1450px;
   // .ba-menu__inner
 
   &__inner {
@@ -261,6 +303,9 @@ export default {
   &__link {
     text-decoration: none;
     color: #000;
+    @media screen and (min-width: 1440px) {
+      font-size: 24px;
+    }
     &:hover {
       color: $dark_olive;
     }
@@ -317,6 +362,7 @@ export default {
   @media screen and (min-width: 640px) {
     flex-wrap: nowrap;
     font-size: 20px;
+    margin-bottom: 52px;
   }
   // .ba-product__name
 
@@ -361,6 +407,10 @@ export default {
   // .ba-product__description
 
   &__description {
+    font-size: 14px;
+    @media screen and (min-width: 1440px) {
+      font-size: 20px;
+    }
   }
   &__buttons {
     display: flex;
