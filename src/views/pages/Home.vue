@@ -1,6 +1,6 @@
 <template>
   <main>
-	 <Intro />
+    <Intro />
     <Hero />
     <Menu />
     <Season />
@@ -26,6 +26,11 @@ export default {
     Season,
     Booking,
     TestTypography
-  }
+  },
+  data() {
+    return {};
+  },
+
+  created() {}
 };
 </script>

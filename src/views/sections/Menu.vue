@@ -1,54 +1,24 @@
 <template>
-  <section class="ba-menu">
+  <section v-if="menuSection" class="ba-menu">
     <div class="ba-container">
       <div class="ba-menu__inner">
-        <h2 class="ba-section-title ba-menu__title">Меню</h2>
+        <h2 class="ba-section-title ba-menu__title">{{sectionTitle}}</h2>
         <!-- /.ba-section-title ba-menu__title -->
         <div class="ba-menu__wrap">
           <div class="ba-menu__categories ba-categories">
             <ul class="ba-categories__list">
-              <li class="ba-categories__item">
+              <li
+                v-for="category in filteredCategories"
+                :key="category.id"
+                class="ba-categories__item"
+              >
                 <a
                   href="#"
                   @click.prevent="getCategory"
-                  class="ba-categories__link ba-categories__link--active"
-                >Закуски</a>
-              </li>
-              <!-- /.ba-categories__item -->
-              <li class="ba-categories__item">
-                <a href="#" @click.prevent="getCategory" class="ba-categories__link">Салати</a>
-              </li>
-              <!-- /.ba-categories__item -->
-              <li class="ba-categories__item">
-                <a href="#" @click.prevent="getCategory" class="ba-categories__link">Перші страви</a>
-              </li>
-              <!-- /.ba-categories__item -->
-              <li class="ba-categories__item">
-                <a href="#" @click.prevent="getCategory" class="ba-categories__link">Паста</a>
-              </li>
-              <!-- /.ba-categories__item -->
-              <li class="ba-categories__item">
-                <a href="#" @click.prevent="getCategory" class="ba-categories__link">Равіолі</a>
-              </li>
-              <!-- /.ba-categories__item -->
-              <li class="ba-categories__item">
-                <a href="#" @click.prevent="getCategory" class="ba-categories__link">Піца</a>
-              </li>
-              <!-- /.ba-categories__item -->
-              <li class="ba-categories__item">
-                <a href="#" @click.prevent="getCategory" class="ba-categories__link">Десерти</a>
-              </li>
-              <!-- /.ba-categories__item -->
-              <li class="ba-categories__item">
-                <a href="#" @click.prevent="getCategory" class="ba-categories__link">Напої</a>
-              </li>
-              <!-- /.ba-categories__item -->
-              <li class="ba-categories__item">
-                <a href="#" @click.prevent="getCategory" class="ba-categories__link">Вкусняхи</a>
-              </li>
-              <!-- /.ba-categories__item -->
-              <li class="ba-categories__item">
-                <a href="#" @click.prevent="getCategory" class="ba-categories__link">Бой посуди</a>
+                  :id="category.id"
+                  class="ba-categories__link"
+                  :class="{'ba-categories__link--active' : activeCat == category.id}"
+                >{{category.name}}</a>
               </li>
               <!-- /.ba-categories__item -->
             </ul>
@@ -65,40 +35,18 @@
               </mq-layout>
             </div>
             <!-- /.ba-list__header -->
-            <div class="ba-list__product ba-product">
+
+            <div v-for="dish in filteredDishes" :key="dish.id" class="ba-list__product ba-product">
               <div class="ba-product__info">
-                <h5 class="ba-product__name">Прошутто крудо з грушею</h5>
-              </div>
-              <p class="ba-product__weight">165 г</p>
-              <!-- /.ba-product__weight -->
-              <p class="ba-product__price">71 грн.</p>
-              <!-- /.ba-product__price -->
-              <div class="ba-product__order">
-                <h4 class="ba-list__column-order" v-if="$mq === 'mobile'">Замовити</h4>
-                <div class="ba-product__buttons">
-                  <button aria-label="reduce quantity" class="ba-quantity ba-quantity--decr"></button>
-                  <p class="ba-product__quantity">0</p>
-                  <!-- /.ba-product__quantity -->
-                  <button aria-label="increase quantity" class="ba-quantity ba-quantity--incr"></button>
-                </div>
-                <!-- /.ba-product__buttons -->
-              </div>
-              <!-- /.ba-product__order -->
-            </div>
-            <!-- /.ba-product -->
-            <div class="ba-list__product ba-product">
-              <div class="ba-product__info">
-                <h5 class="ba-product__name">Італійські м'ясні делікатеси</h5>
-                <span
-                  class="ba-product__description"
-                >(прошутто крудо, брезаола, салямі, салямі гостра)</span>
+                <h5 class="ba-product__name">{{dish.name}}</h5>
+                <span class="ba-product__description">{{dish.description}}</span>
               </div>
 
               <!-- /.ba-product__description -->
               <!-- /.ba-product__name -->
-              <p class="ba-product__weight">120 г</p>
+              <p class="ba-product__weight">{{dish.weight}}</p>
               <!-- /.ba-product__weight -->
-              <p class="ba-product__price">119 грн.</p>
+              <p class="ba-product__price">{{dish.price}}</p>
               <!-- /.ba-product__price -->
               <div class="ba-product__order">
                 <h4 class="ba-list__column-order" v-if="$mq === 'mobile'">Замовити</h4>
@@ -126,15 +74,89 @@
 </template>
 
 <script>
+import { EventBus } from "@/main.js";
+
 export default {
   data() {
     return {
-      titleBg: "require('@/assets/img/sprite.jpg')"
+      titleBg: "require('@/assets/img/sprite.jpg')",
+      activeCat: 1,
+      menuSection: null,
+      sectionTitle: "",
+      categories: {},
+      categoryIDs: [],
+      dishes: {}
     };
   },
   methods: {
     getCategory(event) {
-      console.log(event.target.innerHTML);
+      this.activeCat = event.target.id;
+    },
+    fetchData() {
+      fetch("data/home-page.json")
+        .then(result => result.json())
+        .then(data => {
+          //   console.log(data);
+          this.menuSection = data.menu;
+          this.sectionTitle = this.menuSection.title;
+          this.categories = this.menuSection.menu.categories;
+          this.dishes = this.menuSection.menu.dishes;
+          console.log(this.menuSection);
+        });
+    },
+    getCategoryIDs() {
+      let ids = [];
+
+      for (const property in this.dishes) {
+        // dish id in dish object
+        let item = this.dishes[property].categoryId;
+
+        if (ids.length > 0) {
+          //   check and add new id
+          ids.forEach(element => {
+            if (element != item) {
+              ids.push(item);
+            }
+          });
+        } else {
+          //   push first id
+          ids.push(item);
+        }
+      }
+      // remove duplicates
+      let result = [...new Set(ids)];
+
+      return result;
+    }
+  },
+  created() {
+    this.fetchData();
+  },
+
+  computed: {
+    filteredDishes() {
+      let cat = this.activeCat;
+      return this.dishes.filter(function(dish) {
+        return dish.categoryId == cat;
+      });
+    },
+    filteredCategories() {
+      let currentCategories = this.getCategoryIDs();
+
+      let filteredCategories = [];
+      currentCategories.forEach(categoryId => {
+        filteredCategories.push(
+          this.categories.filter(function(categorie) {
+            return categorie.id == categoryId;
+          })
+        );
+      });
+      let result = [];
+      filteredCategories.forEach(array => {
+        result = result.concat(array);
+      });
+
+      return result;
     }
   }
 };
@@ -225,7 +247,6 @@ export default {
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
   }
 
   // .ba-categories__item
