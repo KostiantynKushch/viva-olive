@@ -1,5 +1,6 @@
 <template>
   <div class="ba-mob-menu">
+    <HeaderCartButton class="ba-mob-menu__cart" />
     <Hamburger class="ba-mob-menu__hamb" />
     <transition name="slide-fade">
       <MobileNav v-if="showMobNav" :links="links" />
@@ -13,6 +14,7 @@ import { EventBus } from "@/main.js";
 
 import Hamburger from "@/components/Hamburger.vue";
 import MobileNav from "@/components/MobileNav.vue";
+import HeaderCartButton from "@/components/HeaderCartButton.vue";
 
 export default {
   props: {
@@ -28,7 +30,8 @@ export default {
   methods: {},
   components: {
     MobileNav,
-    Hamburger
+    Hamburger,
+    HeaderCartButton
   },
   watch: {
     $route(to, from) {
@@ -75,6 +78,9 @@ export default {
 
   &__hamb {
     text-align: right;
+  }
+  &__cart {
+    margin-right: 10%;
   }
 }
 </style>
