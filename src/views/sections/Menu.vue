@@ -143,7 +143,7 @@ export default {
       console.log(this.totalQuantity);
     },
     proceedToCart() {
-      console.log(this.cart);
+      if (this.order.length != 0) this.order = [];
 
       this.dishes.forEach(dish => {
         this.cart.forEach(item => {
