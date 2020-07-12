@@ -3,7 +3,7 @@
     <div class="ba-container">
       <div class="ba-cart-popup__modal">
         <button @click="toggleModal">Close</button>
-        <p>test</p>
+        <p>{{cart}}</p>
       </div>
       <!-- /.ba-cart-popup__modal -->
     </div>
@@ -16,10 +16,20 @@
 import { EventBus } from "@/main.js";
 
 export default {
+  data() {
+    return {
+      cart: []
+    };
+  },
   methods: {
     toggleModal() {
       EventBus.$emit("toggleModal");
     }
+  },
+  created() {
+    EventBus.$on("order", cart => {
+      this.cart = cart;
+    });
   }
 };
 </script>

@@ -156,6 +156,7 @@ export default {
         case "push":
           this.totalQuantity = this.quantityCounter;
           EventBus.$emit("totalQuantity", this.totalQuantity);
+          EventBus.$emit("order", this.order);
           break;
       }
     },
