@@ -128,23 +128,39 @@ export default {
       dishes: {},
       cart: [],
       order: [],
+      quantityCounter: 0,
       totalQuantity: 0
     };
   },
   methods: {
+    clearMenu() {
+      //  for adding new items to already not empty cart
+      console.log("test");
+      this.dishes.forEach(dish => {
+        if (dish.quantity != 0) {
+          dish.quantity = 0;
+        }
+      });
+      this.cart = [];
+    },
     totalQuantityUpdate(action) {
-      if (action === "+") {
-        this.totalQuantity++;
-      } else if (action === "-") {
-        this.totalQuantity--;
-      }
+      //  to apdate counter and total quantity of added products in the cart
+      switch (action) {
+        case "+":
+          this.quantityCounter++;
+          break;
 
-      EventBus.$emit("totalQuantity", this.totalQuantity);
-      console.log(this.totalQuantity);
+        case "-":
+          this.quantityCounter--;
+          break;
+        case "push":
+          this.totalQuantity = this.quantityCounter;
+          EventBus.$emit("totalQuantity", this.totalQuantity);
+          break;
+      }
     },
     proceedToCart() {
-      if (this.order.length != 0) this.order = [];
-
+      //  transfer all data from cart to order
       this.dishes.forEach(dish => {
         this.cart.forEach(item => {
           if (dish.id == item.DishId) {
@@ -155,6 +171,8 @@ export default {
               price: dish.price
             };
             this.order.push(temp);
+            this.totalQuantityUpdate("push");
+            this.clearMenu();
           }
         });
       });

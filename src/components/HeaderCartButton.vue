@@ -1,5 +1,5 @@
 <template>
-  <div class="ba-cart">
+  <div class="ba-cart" @click="toggleModal">
     <svg class="ba-cart__icon">
       <use :xlink:href="require('@/assets/icons/sprite.svg')+'#cart_icon'" />
     </svg>
@@ -21,6 +21,12 @@ export default {
     EventBus.$on("totalQuantity", getQuantity => {
       this.productsCounter = getQuantity;
     });
+  },
+  methods: {
+    toggleModal() {
+      console.log("toggle");
+      EventBus.$emit("toggleModal");
+    }
   }
 };
 </script>
