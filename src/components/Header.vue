@@ -2,7 +2,7 @@
   <header class="ba-header">
     <div class="ba-container">
       <div class="ba-header__inner">
-        <div class="ba-wrap-res ba-wrap-res--mobile" v-if="$mq === 'mobile' || $mq === 'tablet'">
+        <div class="ba-wrap-res ba-wrap-res--mobile" v-show="$mq === 'mobile' || $mq === 'tablet'">
           <div class="ba-row ba-vertical-align">
             <div class="ba-col-medium-2 ba-col-small-4 ba-logo ba-header__logo ba-logo">
               <router-link to="/" class="ba-logo__link">
@@ -21,7 +21,7 @@
           <!-- /.ba-row -->
         </div>
         <!-- /.ba-wrap-res -->
-        <div v-else class="ba-wrap-res ba-wrap-res--desk">
+        <div v-show="$mq === 'laptop' || $mq === 'desktop'" class="ba-wrap-res ba-wrap-res--desk">
           <div class="ba-row">
             <div class="ba-col-5 ba-vertical-align">
               <HeaderDeskNav :links="navLinks.links" />

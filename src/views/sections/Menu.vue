@@ -112,6 +112,8 @@
 
 <script>
 import Preloader from "@/components/Preloader.vue";
+import { EventBus } from "@/main.js";
+
 export default {
   data() {
     return {
@@ -125,10 +127,21 @@ export default {
       categoryIDs: [],
       dishes: {},
       cart: [],
-      order: []
+      order: [],
+      totalQuantity: 0
     };
   },
   methods: {
+    totalQuantityUpdate(action) {
+      if (action === "+") {
+        this.totalQuantity++;
+      } else if (action === "-") {
+        this.totalQuantity--;
+      }
+
+      EventBus.$emit("totalQuantity", this.totalQuantity);
+      console.log(this.totalQuantity);
+    },
     proceedToCart() {
       console.log(this.cart);
 
@@ -152,6 +165,7 @@ export default {
       this.dishes.forEach(element => {
         if (element.id == id) {
           element.quantity--;
+          this.totalQuantityUpdate("-");
         }
       });
     },
@@ -159,6 +173,7 @@ export default {
       this.dishes.forEach(element => {
         if (element.id == id) {
           element.quantity++;
+          this.totalQuantityUpdate("+");
         }
       });
     },

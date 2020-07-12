@@ -10,11 +10,17 @@
 </template>
 
 <script>
+import { EventBus } from "@/main.js";
 export default {
   data() {
     return {
       productsCounter: 0
     };
+  },
+  created() {
+    EventBus.$on("totalQuantity", getQuantity => {
+      this.productsCounter = getQuantity;
+    });
   }
 };
 </script>
