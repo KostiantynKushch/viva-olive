@@ -83,6 +83,11 @@
             <!-- /.ba-menu__list ba-list -->
           </div>
           <!-- /.ba-menu__wrap -->
+          <div class="ba-menu__add-to-cart">
+            <a href="#" class="ba-menu__button ba-button">Додати до кошика</a>
+            <!-- /.ba-button ba-button--green -->
+          </div>
+          <!-- /.ba-menu__add-to-cart -->
         </div>
         <!-- /.ba-menu__inner -->
       </div>
@@ -213,9 +218,11 @@ export default {
   }
 
   &__wrap {
+    margin-bottom: 58px;
     @media screen and (min-width: 1024px) {
       width: 70%;
       margin-left: 30%;
+      margin-bottom: 98px;
     }
   }
 
@@ -257,6 +264,14 @@ export default {
   // .ba-menu__list
 
   &__list {
+  }
+  &__add-to-cart {
+    color: $dark_gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__button {
   }
 }
 
@@ -368,6 +383,7 @@ export default {
 
   &__name {
     margin: 0;
+    text-transform: uppercase;
   }
 
   &__info {
