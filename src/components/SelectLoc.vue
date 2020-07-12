@@ -27,7 +27,6 @@ export default {
       .then(result => result.json())
       .then(data => {
         this.locations = data.locations;
-        console.log(this.locations);
       });
   }
 };

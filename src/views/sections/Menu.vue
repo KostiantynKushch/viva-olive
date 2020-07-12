@@ -69,10 +69,18 @@
                 <div class="ba-product__order">
                   <h4 class="ba-list__column-order" v-if="$mq === 'mobile'">Замовити</h4>
                   <div class="ba-product__buttons">
-                    <button aria-label="reduce quantity" class="ba-quantity ba-quantity--decr"></button>
-                    <p class="ba-product__quantity">0</p>
+                    <button
+                      @click="removeProduct(dish.id)"
+                      aria-label="reduce quantity"
+                      class="ba-quantity ba-quantity--decr"
+                    ></button>
+                    <p class="ba-product__quantity">{{dish.quantity}}</p>
                     <!-- /.ba-product__quantity -->
-                    <button aria-label="increase quantity" class="ba-quantity ba-quantity--incr"></button>
+                    <button
+                      @click="addProduct(dish.id)"
+                      aria-label="increase quantity"
+                      class="ba-quantity ba-quantity--incr"
+                    ></button>
                   </div>
                   <!-- /.ba-product__buttons -->
                 </div>
@@ -84,7 +92,11 @@
           </div>
           <!-- /.ba-menu__wrap -->
           <div class="ba-menu__add-to-cart">
-            <a href="#" class="ba-menu__button ba-button">Додати до кошика</a>
+            <a
+              href="#"
+              @click.prevent="proceedToCart"
+              class="ba-menu__button ba-button"
+            >Додати до кошика</a>
             <!-- /.ba-button ba-button--green -->
           </div>
           <!-- /.ba-menu__add-to-cart -->
@@ -111,10 +123,81 @@ export default {
       sectionTitle: "",
       categories: {},
       categoryIDs: [],
-      dishes: {}
+      dishes: {},
+      cart: [],
+      order: []
     };
   },
   methods: {
+    proceedToCart() {
+      console.log(this.cart);
+
+      this.dishes.forEach(dish => {
+        this.cart.forEach(item => {
+          if (dish.id == item.DishId) {
+            let temp = {
+              id: item.DishId,
+              name: dish.name,
+              quantity: item.quantity,
+              price: dish.price
+            };
+            this.order.push(temp);
+          }
+        });
+      });
+
+      console.log(this.order);
+    },
+    frontDecrement(id) {
+      this.dishes.forEach(element => {
+        if (element.id == id) {
+          element.quantity--;
+        }
+      });
+    },
+    frontIncrement(id) {
+      this.dishes.forEach(element => {
+        if (element.id == id) {
+          element.quantity++;
+        }
+      });
+    },
+    addProduct(id) {
+      let currentDish = { DishId: id, quantity: 1 };
+      let newItem = true;
+
+      if (this.cart.length == 0) {
+        this.cart.push(currentDish);
+        this.frontIncrement(id);
+      } else {
+        this.cart.forEach(cartItem => {
+          if (cartItem.DishId == id) {
+            cartItem.quantity++;
+            newItem = false;
+            this.frontIncrement(id);
+          }
+        });
+        if (newItem == true) {
+          this.cart.push(currentDish);
+          this.frontIncrement(id);
+        }
+      }
+    },
+    removeProduct(id) {
+      if (this.cart.length > 0) {
+        this.cart.forEach(item => {
+          if (item.DishId == id) {
+            item.quantity--;
+            this.frontDecrement(id);
+          }
+        });
+
+        let updatedCart = this.cart.filter(function(value) {
+          return value.quantity != 0;
+        });
+        this.cart = updatedCart;
+      }
+    },
     getCategory(event) {
       this.activeCat = event.target.id;
     },
