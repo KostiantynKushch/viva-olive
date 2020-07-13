@@ -12,20 +12,13 @@
       </div>
     </div>
     <!-- /.ba-intro__inner -->
-    <div class="ba-intro__scroll">
-      <a
-        class="ba-intro__scroll--text"
-        href="#welcome"
-        v-smooth-scroll="{duration: 1000, offset: -70}"
-      >Scroll</a>
-      <a
-        href="#welcome"
-        v-smooth-scroll="{duration: 1000, offset: -70}"
-        class="ba-intro__scroll--link"
-      >
+    <a class="ba-intro__scroll" href="#welcome"
+        v-smooth-scroll="{duration: 1000, offset: -70}">
+      <span class="ba-intro__scroll--text">Scroll</span>
+      <a class="ba-intro__scroll--link">
         <img class="ba-intro__scroll--link-img" src="../../assets/img/Scroll.png" alt="Scroll" />
       </a>
-    </div>
+    </a>
     <!-- /.ba-container -->
   </section>
 
@@ -140,7 +133,8 @@ export default {
     display: block;
     margin: 0 auto;
     position: absolute;
-    bottom: 0;
+	 bottom: 0;
+	 text-decoration: none;
     &:hover {
       transform: scale(1.1);
     }
@@ -150,7 +144,6 @@ export default {
       font-weight: normal;
       font-size: 18px;
       line-height: 32px;
-      text-decoration: none;
       color: #2c2c11;
       opacity: 0.7;
       @media (min-width: 768px) {

@@ -2,11 +2,11 @@
   <section class="ba-hero" id="welcome">
     <div class="ba-container">
       <div class="ba-hero__inner">
-        <h5 class="ba-hero__inner--title">Ресторан "VIVA OLIVE" запрошує всіх бажаючих на обід!</h5>
-        <p class="ba-hero__inner--text">
+        <h5 class="ba-hero__inner-title">Ресторан "VIVA OLIVE" запрошує всіх бажаючих на обід!</h5>
+        <p class="ba-hero__inner-text">
           Наш ресторан може запропонувати Вам послуги найвищого рівня (літня тераса, затишний закритий зал, домашня атмосфера).
           <br />Наші шеф-кухарі задовольнять самі витончені запити гурманів. Всі наші страви припадуть до смаку як дітям, так і доросл им шанувальникам вишуканої кухні.
-          <br />Гурмани зможуть по достоїнству оцінити всі наші страви!
+          <br /><span>Гурмани зможуть по достоїнству оцінити всі наші страви!</span>
           <br />Наш ресторан може запропонувати Вам домашній затишок в поєднанні з високою якістю обслуговування і величезним асортиментом цікавих страв.
         </p>
       </div>
@@ -30,13 +30,16 @@ export default {};
     background-size: contain;
   }
   &__inner {
-    &--title {
+	   @media (min-width: 768px) {
+        padding-bottom: 110px;
+      } 
+    &-title {
       font-family: Montserrat;
       font-style: normal;
       font-weight: bold;
       font-size: 22px;
       line-height: 30px;
-      padding: 50px 30px 50px 10px;
+      padding: 50px 0;
       margin: 0;
       @media (min-width: 1024px) {
         padding: 70px 100px 60px 70px;
@@ -49,7 +52,7 @@ export default {};
         line-height: 52px;
       }
     }
-    &--text {
+    &-text {
       font-family: Montserrat;
       font-style: normal;
       font-weight: normal;
@@ -66,7 +69,7 @@ export default {};
         padding: 0px 450px 20px 160px;
         font-size: 18px;
         line-height: 32px;
-      }
+		}
     }
   }
 }
