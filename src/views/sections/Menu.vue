@@ -132,10 +132,9 @@ export default {
       totalQuantity: 0
     };
   },
-  methods: {
+  methods:  {
     clearMenu() {
       //  for adding new items to already not empty cart
-      console.log("test");
       this.dishes.forEach(dish => {
         if (dish.quantity != 0) {
           dish.quantity = 0;
@@ -149,7 +148,6 @@ export default {
         case "+":
           this.quantityCounter++;
           break;
-
         case "-":
           this.quantityCounter--;
           break;
@@ -162,8 +160,8 @@ export default {
     },
     proceedToCart() {
       //  transfer all data from cart to order
-      this.dishes.forEach(dish => {
-        this.cart.forEach(item => {
+      this.cart.forEach(item => {
+        this.dishes.forEach(dish => {
           if (dish.id == item.DishId) {
             let temp = {
               id: item.DishId,
@@ -171,13 +169,26 @@ export default {
               quantity: item.quantity,
               price: dish.price
             };
-            this.order.push(temp);
-            this.totalQuantityUpdate("push");
-            this.clearMenu();
+            console.log('item');
+            if(this.order.length == 0){
+              this.order.push(temp);
+            }else{
+              let newItem = true;
+              this.order.forEach(orderItem => {
+                  if(orderItem.id == temp.id){
+                    orderItem.quantity = orderItem.quantity + temp.quantity;
+                    newItem = false;
+                  }
+              });
+              if(newItem == true){
+                this.order.push(temp);
+              }
+            }
           }
         });
       });
-
+            this.totalQuantityUpdate("push");
+            this.clearMenu();
       console.log(this.order);
     },
     frontDecrement(id) {
@@ -199,7 +210,6 @@ export default {
     addProduct(id) {
       let currentDish = { DishId: id, quantity: 1 };
       let newItem = true;
-
       if (this.cart.length == 0) {
         this.cart.push(currentDish);
         this.frontIncrement(id);
@@ -225,7 +235,6 @@ export default {
             this.frontDecrement(id);
           }
         });
-
         let updatedCart = this.cart.filter(function(value) {
           return value.quantity != 0;
         });
