@@ -170,7 +170,6 @@ export default {
               quantity: item.quantity,
               price: dish.price
             };
-            console.log("item");
             if (this.order.length == 0) {
               this.order.push(temp);
             } else {
@@ -190,7 +189,6 @@ export default {
       });
       this.totalQuantityUpdate("push");
       this.clearMenu();
-      console.log(this.order);
     },
     frontDecrement(id) {
       this.dishes.forEach(element => {
@@ -298,12 +296,10 @@ export default {
       cart.forEach(cartItem => {
         total += cartItem.quantity;
       });
+      this.totalQuantity = total;
+      this.quantityCounter = total;
       EventBus.$emit("totalQuantity", total);
     });
-
-    //  EventBus.$on("quantityCounterIncrement", () => {
-    //    this.quantityCounter++;
-    //  });
   },
 
   computed: {
