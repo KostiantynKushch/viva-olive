@@ -3,7 +3,8 @@
     <div class="ba-container">
       <div class="ba-cart-popup__modal">
         <button @click="toggleModal">Close</button>
-        <p>{{cart}}</p>
+        <p v-if="cart.length == 0"> No Items in the cart </p>
+        <p v-else>{{cart}}</p>
       </div>
       <!-- /.ba-cart-popup__modal -->
     </div>
@@ -18,7 +19,7 @@ import { EventBus } from "@/main.js";
 export default {
   data() {
     return {
-      cart: []
+      cart: [],
     };
   },
   methods: {
@@ -30,6 +31,7 @@ export default {
     EventBus.$on("order", cart => {
       this.cart = cart;
     });
+
   }
 };
 </script>

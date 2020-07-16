@@ -35,6 +35,14 @@ export default {
     EventBus.$on("toggleModal", () => {
       this.modalOpen = !this.modalOpen;
     });
+
+    // hide modal on 'Esc'
+    addEventListener('keydown', (event) =>{
+          if(event.key === 'Escape' && this.modalOpen == true){
+              this.modalOpen = false;
+          }
+    })
+
   },
   methods: {}
 };

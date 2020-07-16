@@ -14,7 +14,7 @@ import { EventBus } from "@/main.js";
 export default {
   data() {
     return {
-      productsCounter: 0
+      productsCounter: 0,
     };
   },
   created() {
@@ -24,7 +24,6 @@ export default {
   },
   methods: {
     toggleModal() {
-      console.log("toggle");
       EventBus.$emit("toggleModal");
     }
   }
