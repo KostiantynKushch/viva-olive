@@ -96,6 +96,7 @@
               href="#"
               @click.prevent="proceedToCart"
               class="ba-menu__button ba-button"
+              :class="{'ba-button--disabled' : cart.length == 0}"
             >Додати до кошика</a>
             <!-- /.ba-button ba-button--green -->
           </div>
@@ -132,10 +133,9 @@ export default {
       totalQuantity: 0
     };
   },
-  methods: {
+  methods:  {
     clearMenu() {
       //  for adding new items to already not empty cart
-      console.log("test");
       this.dishes.forEach(dish => {
         if (dish.quantity != 0) {
           dish.quantity = 0;
@@ -149,7 +149,6 @@ export default {
         case "+":
           this.quantityCounter++;
           break;
-
         case "-":
           this.quantityCounter--;
           break;
@@ -162,8 +161,8 @@ export default {
     },
     proceedToCart() {
       //  transfer all data from cart to order
-      this.dishes.forEach(dish => {
-        this.cart.forEach(item => {
+      this.cart.forEach(item => {
+        this.dishes.forEach(dish => {
           if (dish.id == item.DishId) {
             let temp = {
               id: item.DishId,
@@ -171,13 +170,26 @@ export default {
               quantity: item.quantity,
               price: dish.price
             };
-            this.order.push(temp);
-            this.totalQuantityUpdate("push");
-            this.clearMenu();
+            console.log('item');
+            if(this.order.length == 0){
+              this.order.push(temp);
+            }else{
+              let newItem = true;
+              this.order.forEach(orderItem => {
+                  if(orderItem.id == temp.id){
+                    orderItem.quantity = orderItem.quantity + temp.quantity;
+                    newItem = false;
+                  }
+              });
+              if(newItem == true){
+                this.order.push(temp);
+              }
+            }
           }
         });
       });
-
+            this.totalQuantityUpdate("push");
+            this.clearMenu();
       console.log(this.order);
     },
     frontDecrement(id) {
@@ -199,7 +211,6 @@ export default {
     addProduct(id) {
       let currentDish = { DishId: id, quantity: 1 };
       let newItem = true;
-
       if (this.cart.length == 0) {
         this.cart.push(currentDish);
         this.frontIncrement(id);
@@ -225,7 +236,6 @@ export default {
             this.frontDecrement(id);
           }
         });
-
         let updatedCart = this.cart.filter(function(value) {
           return value.quantity != 0;
         });
@@ -556,23 +566,6 @@ export default {
   }
 }
 
-.ba-quantity {
-  border: none;
-  width: 50px;
-  height: 50px;
-  outline: none;
-  background-size: cover;
 
-  &:hover,
-  &:focus {
-    opacity: 0.6;
-  }
-  &--decr {
-    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAN+SURBVHgB7ZmxThtBEEDHURo6NxRUXI+ELSgpOL4gRqKP/8BGQlCeUyFoEvEDQaIECadEFD4KEAUgGxCUPlcUFLhzeZnn3Ekn4uRMvLco0j3pZHNednd2ZmdnZkVycnJycnL+nYIYJAzDon5Ub25uSp1Op/z8/OwMBgPeydTUVH96ejpYWFgISqXSD33lFwqFQAxhRBAVwD06OvLOz8/dZrMp/X5fXNcVx3GkWBzKMXzXbrclCILh3/y+sbHhz83NfVGBfHlPVACnpeikQp1wuLW19fLw8NDS93V9ypGG4rZFBNanenp6eux5XqiChtVqNby9vT2mL3kPdODazs7OSyxAt9ttJCc+xv87+jT29va6CEQfLIDYpNfreWiB5+Li4ttbBHgNAl1dXe3TV6VSCXVBPLEBQpTL5bBWq4UmV5C+MDf6zlwYzIlVY0BsXQxDn/V6fajpzMwME8COMx3k1zh1xmD/ZeIA1HUesymvr6+/S8aw73Aivu+3xCS4TdwkHsaGm8R5JLTviinu7+9baAN3KZbAnaOVw8NDM1pBA2ij0eCYsHdoxVph80/i3pMdVtHGyclJUyyTsITJnQvhQ9RZVSyDAJjXOA7mQ1oDPXUdgj8lEPv4BJdE0mkNUwUhFNfTlq9tsU/AIjKHtIYf0xqQTxCKa6jdH/W7Br/h2dmZTMLy8rKsrKz8llIwpjoZiXOav5Gqkf+FVI2Q2T09PZFLFEdpZdRKmoIx19fXZWZmpp/WNlUjpKdRVueIfcpklcwhrWGqIPPz8x2Nefjqin0cFnFxcbEnk4Ivn52dDTmcxDKkxOOeYeNs9v3V1VU5ODgoGwkVxoRwSIsZFc4RxRcTELhxwhLIiSVUEA9tGLUEQmlC6qhAkLlW0AYpA8Gq0TAeSHLQyuXl5VfJGGIrtEGcJ6Zhlba3t22kurWE9h3JgjifjnKEz2IY+iTvocCReY2LDU/JJkq0TJaDaixQVA5qiA0YiFVDO9jzJCaA82DfxQU/m54xnkB9c3PzhU0ZFSW8twiEABT72As4kaj8Y7dkmpiMg2fBTSIQ5sZpzEkcFaxfF7E5VOsUumMB0AIecdKNbexa4fHx0dvd3XWjuGx4pUBClrxWIG7id96pacrS0pK/trZm5FrB9EWPox/u3d3dJ1LkURc9esnT1suejr7a/1OylpOTk5OTY5uf05KqWn7tko4AAAAASUVORK5CYII=");
-  }
 
-  &--incr {
-    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAPVSURBVHgB7Vk9SORAFH57XGPlNhZ26QU3aCUWxsb2VrAV01kmgmiZtRJFONFGqwtYKrjWChsLxUIl62+52crCwnSWufflEli8PSfR2ZGDfBCyO5m/772ZN++9ISpQoECBAgU+jhJJRBRFZX6Z19fXlWazqT8/P2uvr68oo76+vnBgYCAYGRkJKpXKERd5pVIpIEmQQoQJGAcHB87Z2ZlRr9cpDEMyDIM0TaNyOeYRl/m+T0EQxP/xfXFx0RsaGlphQh59JZiA1mDwpCKecLS8vPzy8PDQ4HKbHz3RUFq3DML8mMfHx4eO40RMNDJNM7q5uTlEX/QV4IGttbW1l5RAq9WqdU48Q3uNn9rW1lYLhNAHBEAq0W63HWgBz/n5+WYeAm8BQpeXly76qlarEQvEIRUACV3XI8uyIpkSRF9Ybui752SwnCA1DIi1TpKBPm3bjjXds2WGJYB13NNB/oxjYwzsv54YADadh9iUV1dXv/K0Y6MW4cnTBvsORsTzvAbJBMwmzCQsTF4p1Wq1CE+eNjAeHdo3SBbu7u4a0AbMJeXER4gAMOfQyv7+fiatfBNVgAY2NjagEfx1SRFYcJvz8/MhvIUs5l1IhGHwWqWxsbEjmb6RCDxWODs768PlYZii+kIit7e3P/Cempqqk2KwH3YEHw1OqKiukAifuhqcP0ZA6uHBuYQnLaooJAJXnE9b/PRJPQIIEXMQVfwuqoB4Aq441my37zgjTk9PRd3Qe5ZrYmKCJicn/wopMCa3ozSmeQ9ZNvt/AaFGENk9PT0hlih300o3SXYi1QS/cwdxGHNhYYEGBwdDUV2hRhCeJlGdRuqhI6rEHEQVhUSGh4ebOEcYBqmHBiGOjo62RRWFRLgTv7+/n+7v73+QYpycnMRjsjCFZ1iWze5OT0/T3t6e/plIMC/gGrF7UsU5wvBE9YVEsMHHx8e93d3dMqtZZUw957punGnJ4hplMr8zMzMrOBR3dnYsFVqBNra3t01oA+kikgkEOXCrLy4ufuZp95HACsEbwgakiUg2IKXV1VUVoa6FMZL0kEa9QBpPI0HAmCPJQJ84QJHg6HmOC5EbUjYYUHI6yIKAknRQjVQAA0Fq0A7W82eWAIwH9l2a8FNGomMC9tLS0gs2ZZKUcPIQAgEk+7AXYESS9I/alGnHZDRYFmRYQAjLDQlqJNqShPXbJDYOVRuJ7pQAtACL+NmNLe1a4fHx0VlfXzcSvyy+UsDZ03mtAL8J31HGS5Nw0OKMknGtIPuiR+OXgTgfIXK3ix6+5PH5sqfJRe6/grUCBQoUKFBANX4DVk2mRZoz0toAAAAASUVORK5CYII=");
-  }
-}
 </style>
