@@ -2,7 +2,11 @@
   <div class="ba-cart-popup ba-overlay">
     <div class="ba-container">
       <div class="ba-cart-popup__modal">
-        <button @click="toggleModal" aria-label="close the cart popup" class="ba-close-btn ba-cart-popup__close">Close</button>
+        <button
+          @click="toggleModal"
+          aria-label="close the cart popup"
+          class="ba-close-btn ba-cart-popup__close"
+        >Close</button>
         <h3 class="ba-cart-popup__title">Кошик</h3>
         <!-- /.ba-cart-popup__title -->
         <div class="ba-cart-popup__header">
@@ -12,13 +16,26 @@
         </div>
         <!-- /.ba-cart-popup__header -->
         <div class="ba-cart-popup__body">
-        <p v-if="cart.length == 0"> No Items in the cart </p>
-        <order v-else :order="cart" />
+          <p v-if="cart.length == 0">Your Cart is Empty</p>
+          <order
+            v-else
+            :order="cart"
+            @removedItem="removeItem"
+            @increasedQuantity="increaseQuantity"
+            @reducedQuantity="reduceQuantity"
+          />
         </div>
         <!-- /.bacart-popup__body -->
         <div class="ba-cart-popup__footer">
-          <p class="ba-cart-popup__total">Сума замовлення: <b>170 грн.</b> </p>
-          <a @click.prevent="toConfirmation" href="#" class="ba-button ba-button--small ba-button--olive">Замовити</a>
+          <p class="ba-cart-popup__total">
+            Сума замовлення:
+            <b>{{ `${orderSum} грн.`}}</b>
+          </p>
+          <a
+            @click.prevent="toConfirmation"
+            href="#"
+            class="ba-button ba-button--small ba-button--olive"
+          >Замовити</a>
         </div>
         <!-- /.ba-cart-popup__footer -->
       </div>
@@ -31,30 +48,56 @@
 
 <script>
 import { EventBus } from "@/main.js";
-import CartPopupOrder from "@/components/CartPopupOrder"
+import CartPopupOrder from "@/components/CartPopupOrder";
 
 export default {
   data() {
     return {
       cart: [],
+      sum: 0
     };
   },
   methods: {
     toggleModal() {
       EventBus.$emit("toggleModal");
     },
-    toConfirmation(){
-      console.log('confirmation');
+    toConfirmation() {
+      console.log("confirmation");
+    },
+    removeItem(item) {
+      let updatedOrder = this.cart.filter(function(goods) {
+        return goods != item;
+      });
+      this.cart = updatedOrder;
+      EventBus.$emit("updatedCart", this.cart);
+    },
+    increaseQuantity(item) {
+      item.quantity++;
+      EventBus.$emit("updatedCart", this.cart);
+    },
+    reduceQuantity(item) {
+      if (item.quantity > 1) {
+        item.quantity--;
+        EventBus.$emit("updatedCart", this.cart);
+      }
+    }
+  },
+  computed: {
+    orderSum() {
+      let sum = 0;
+      this.cart.forEach(cartItem => {
+        sum += cartItem.price * cartItem.quantity;
+      });
+      return sum;
     }
   },
   created() {
     EventBus.$on("order", cart => {
       this.cart = cart;
     });
-
   },
-  components:{
-    'order' : CartPopupOrder
+  components: {
+    order: CartPopupOrder
   }
 };
 </script>
@@ -77,22 +120,22 @@ export default {
     position: relative;
     padding: 17px 75px 83px;
   }
-  &__close{
+  &__close {
     position: absolute;
     top: 10px;
     right: 10px;
   }
-  &__title{
+  &__title {
     text-align: center;
   }
-  &__header{
+  &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-right: 130px;
     border-bottom: 1px solid #747436;
   }
-  &__body{
+  &__body {
     padding: 30px 0;
     border-bottom: 1px solid #747436;
     display: flex;
@@ -100,7 +143,7 @@ export default {
     align-items: center;
     justify-content: center;
   }
-  &__footer{
+  &__footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -109,5 +152,4 @@ export default {
 }
 .ba-overlay {
 }
-
 </style>

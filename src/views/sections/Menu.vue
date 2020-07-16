@@ -64,7 +64,7 @@
                 <!-- /.ba-product__name -->
                 <p class="ba-product__weight">{{dish.weight}}</p>
                 <!-- /.ba-product__weight -->
-                <p class="ba-product__price">{{dish.price}}</p>
+                <p class="ba-product__price">{{`${dish.price} грн`}}</p>
                 <!-- /.ba-product__price -->
                 <div class="ba-product__order">
                   <h4 class="ba-list__column-order" v-if="$mq === 'mobile'">Замовити</h4>
@@ -133,7 +133,7 @@ export default {
       totalQuantity: 0
     };
   },
-  methods:  {
+  methods: {
     clearMenu() {
       //  for adding new items to already not empty cart
       this.dishes.forEach(dish => {
@@ -170,26 +170,26 @@ export default {
               quantity: item.quantity,
               price: dish.price
             };
-            console.log('item');
-            if(this.order.length == 0){
+            console.log("item");
+            if (this.order.length == 0) {
               this.order.push(temp);
-            }else{
+            } else {
               let newItem = true;
               this.order.forEach(orderItem => {
-                  if(orderItem.id == temp.id){
-                    orderItem.quantity = orderItem.quantity + temp.quantity;
-                    newItem = false;
-                  }
+                if (orderItem.id == temp.id) {
+                  orderItem.quantity = orderItem.quantity + temp.quantity;
+                  newItem = false;
+                }
               });
-              if(newItem == true){
+              if (newItem == true) {
                 this.order.push(temp);
               }
             }
           }
         });
       });
-            this.totalQuantityUpdate("push");
-            this.clearMenu();
+      this.totalQuantityUpdate("push");
+      this.clearMenu();
       console.log(this.order);
     },
     frontDecrement(id) {
@@ -292,6 +292,18 @@ export default {
   },
   created() {
     this.fetchData();
+    EventBus.$on("updatedCart", cart => {
+      this.order = cart;
+      let total = 0;
+      cart.forEach(cartItem => {
+        total += cartItem.quantity;
+      });
+      EventBus.$emit("totalQuantity", total);
+    });
+
+    //  EventBus.$on("quantityCounterIncrement", () => {
+    //    this.quantityCounter++;
+    //  });
   },
 
   computed: {
@@ -565,7 +577,4 @@ export default {
     }
   }
 }
-
-
-
 </style>
