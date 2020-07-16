@@ -96,6 +96,7 @@
               href="#"
               @click.prevent="proceedToCart"
               class="ba-menu__button ba-button"
+              :class="{'ba-button--disabled' : cart.length == 0}"
             >Додати до кошика</a>
             <!-- /.ba-button ba-button--green -->
           </div>

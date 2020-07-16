@@ -35,4 +35,10 @@
     background: $light_gray;
     border-color: $light_gray;
   }
+
+  &--disabled{
+    pointer-events: none;
+    user-select: none;
+    color: $disable;
+  }
 }
