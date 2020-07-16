@@ -2,9 +2,25 @@
   <div class="ba-cart-popup ba-overlay">
     <div class="ba-container">
       <div class="ba-cart-popup__modal">
-        <button @click="toggleModal">Close</button>
+        <button @click="toggleModal" aria-label="close the cart popup" class="ba-close-btn ba-cart-popup__close">Close</button>
+        <h3 class="ba-cart-popup__title">Кошик</h3>
+        <!-- /.ba-cart-popup__title -->
+        <div class="ba-cart-popup__header">
+          <p class="ba-subtitle ba-subtitle--accent">Страва</p>
+          <p class="ba-subtitle ba-subtitle--accent">Кількість</p>
+          <p class="ba-subtitle ba-subtitle--accent">Ціна</p>
+        </div>
+        <!-- /.ba-cart-popup__header -->
+        <div class="ba-cart-popup__body">
         <p v-if="cart.length == 0"> No Items in the cart </p>
-        <p v-else>{{cart}}</p>
+        <order v-else :order="cart" />
+        </div>
+        <!-- /.bacart-popup__body -->
+        <div class="ba-cart-popup__footer">
+          <p class="ba-cart-popup__total">Сума замовлення: <b>170 грн.</b> </p>
+          <a @click.prevent="toConfirmation" href="#" class="ba-button ba-button--small ba-button--olive">Замовити</a>
+        </div>
+        <!-- /.ba-cart-popup__footer -->
       </div>
       <!-- /.ba-cart-popup__modal -->
     </div>
@@ -15,6 +31,7 @@
 
 <script>
 import { EventBus } from "@/main.js";
+import CartPopupOrder from "@/components/CartPopupOrder"
 
 export default {
   data() {
@@ -25,6 +42,9 @@ export default {
   methods: {
     toggleModal() {
       EventBus.$emit("toggleModal");
+    },
+    toConfirmation(){
+      console.log('confirmation');
     }
   },
   created() {
@@ -32,6 +52,9 @@ export default {
       this.cart = cart;
     });
 
+  },
+  components:{
+    'order' : CartPopupOrder
   }
 };
 </script>
@@ -51,8 +74,40 @@ export default {
 
   &__modal {
     background: $white;
+    position: relative;
+    padding: 17px 75px 83px;
+  }
+  &__close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  &__title{
+    text-align: center;
+  }
+  &__header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 130px;
+    border-bottom: 1px solid #747436;
+  }
+  &__body{
+    padding: 30px 0;
+    border-bottom: 1px solid #747436;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  &__footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 55px;
   }
 }
 .ba-overlay {
 }
+
 </style>
