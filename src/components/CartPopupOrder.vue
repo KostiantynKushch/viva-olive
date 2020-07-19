@@ -3,13 +3,13 @@
     <div v-for="item in order" :key="item.id" class="ba-order__item ba-item">
       <p class="ba-item__name">{{item.name}}</p>
       <!-- /.ba-order__item-name -->
-      <div class="ba-item__quantity">
+      <div class="ba-item__buttons">
         <button
           @click="reduceQuantity(item)"
           aria-label="reduce quantity"
           class="ba-quantity ba-quantity--decr"
         ></button>
-        <p class="ba-product__quantity">{{item.quantity}}</p>
+        <p class="ba-item__quantity">{{item.quantity}}</p>
         <!-- /.ba-product__quantity -->
         <button
           @click="increaseQuantity(item)"
@@ -20,7 +20,7 @@
       <!-- /.ba-item__quantity -->
       <p class="ba-item__price">{{`${item.price} грн`}}</p>
       <!-- /.ba-item__price -->
-      <button @click.prevent="removeItem(item)" class="ba-close-btn ba-item__remove">X</button>
+      <button @click.prevent="removeItem(item)" class="ba-close-btn ba-item__remove"></button>
       <!-- /.ba-close-btn ba-item__remove -->
     </div>
     <!-- /.ba-order__item ba-item -->
@@ -51,7 +51,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .ba-order {
   width: 100%;
 }
@@ -60,15 +60,17 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  @media screen and (min-width: 1024px) {
+  }
 
-  &__quantity {
+  &__buttons {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 35px;
-    @media screen and (min-width: 640px) {
-      margin-bottom: 0;
-    }
+  }
+  &__quantity {
+    margin: 0;
   }
 }
 </style>

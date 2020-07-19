@@ -6,7 +6,7 @@
           @click="toggleModal"
           aria-label="close the cart popup"
           class="ba-close-btn ba-cart-popup__close"
-        >Close</button>
+        ></button>
         <h3 class="ba-cart-popup__title">Кошик</h3>
         <!-- /.ba-cart-popup__title -->
         <div class="ba-cart-popup__header">
@@ -113,17 +113,25 @@ export default {
   z-index: 9;
   background: rgba($color: #000, $alpha: 0.3);
   backdrop-filter: blur(5px);
-  padding: 20vh 15vw;
+  //   padding: 20vh 15vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &__modal {
     background: $white;
     position: relative;
-    padding: 17px 75px 83px;
+    padding: 30px 20px 30px;
+    max-height: 80vh;
+    overflow-y: auto;
+    @media screen and (min-width: 1024px) {
+      padding: 17px 75px 83px;
+    }
   }
   &__close {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 20px;
+    right: 20px;
   }
   &__title {
     text-align: center;
@@ -132,8 +140,11 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-right: 130px;
     border-bottom: 1px solid #747436;
+    //  padding-right: 40px;
+    @media screen and (min-width: 1024px) {
+      padding-right: 130px;
+    }
   }
   &__body {
     padding: 30px 0;
@@ -145,9 +156,19 @@ export default {
   }
   &__footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding-top: 55px;
+    padding-top: 35px;
+    flex-wrap: wrap;
+    @media screen and (min-width: 1024px) {
+      padding-top: 55px;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+    }
+  }
+  &__total {
+    font-size: 14px;
+    text-align: center;
   }
 }
 .ba-overlay {
