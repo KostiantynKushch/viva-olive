@@ -57,11 +57,19 @@ export default {
 }
 
 .ba-item {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  @media screen and (min-width: 1024px) {
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 3fr 2fr 1fr 1fr;
+  }
+
+  &__name {
+    grid-column: 1/4;
+    @media screen and (min-width: 768px) {
+      grid-column: 1/2;
+    }
   }
 
   &__buttons {
@@ -71,6 +79,15 @@ export default {
   }
   &__quantity {
     margin: 0;
+  }
+
+  &__price {
+    @media screen and (min-width: 768px) {
+      text-align: center;
+    }
+  }
+  &__remove {
+    margin: 0 auto;
   }
 }
 </style>

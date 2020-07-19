@@ -37,14 +37,12 @@ export default {
     });
 
     // hide modal on 'Esc'
-    addEventListener('keydown', (event) =>{
-          if(event.key === 'Escape' && this.modalOpen == true){
-              this.modalOpen = false;
-          }
-    })
-
-  },
-  methods: {}
+    addEventListener("keydown", event => {
+      if (event.key === "Escape" && this.modalOpen == true) {
+        this.modalOpen = false;
+      }
+    });
+  }
 };
 </script>
 

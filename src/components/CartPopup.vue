@@ -9,21 +9,22 @@
         ></button>
         <h3 class="ba-cart-popup__title">Кошик</h3>
         <!-- /.ba-cart-popup__title -->
-        <div class="ba-cart-popup__header">
-          <p class="ba-subtitle ba-subtitle--accent">Страва</p>
-          <p class="ba-subtitle ba-subtitle--accent">Кількість</p>
-          <p class="ba-subtitle ba-subtitle--accent">Ціна</p>
+        <div class="ba-cart-popup__header ba-popup-header">
+          <p class="ba-subtitle ba-subtitle--accent popup-header__name">Страва</p>
+          <p class="ba-subtitle ba-subtitle--accent popup-header__quantity">Кількість</p>
+          <p class="ba-subtitle ba-subtitle--accent popup-header__price">Ціна</p>
         </div>
         <!-- /.ba-cart-popup__header -->
         <div class="ba-cart-popup__body">
-          <p v-if="cart.length == 0">Your Cart is Empty</p>
+          <p v-if="cart.length == 0" class="ba-placeholder">Your Cart is Empty</p>
           <order
-            v-else
+            v-if="cart.length > 0 && confirm == false"
             :order="cart"
             @removedItem="removeItem"
             @increasedQuantity="increaseQuantity"
             @reducedQuantity="reduceQuantity"
           />
+          <confirmation v-if="cart.length > 0 && confirm == true" />
         </div>
         <!-- /.bacart-popup__body -->
         <div class="ba-cart-popup__footer">
@@ -49,12 +50,14 @@
 <script>
 import { EventBus } from "@/main.js";
 import CartPopupOrder from "@/components/CartPopupOrder";
+import CartPopupConfirmation from "@/components/CartPopupConfirmation";
 
 export default {
   data() {
     return {
       cart: [],
-      sum: 0
+      sum: 0,
+      confirm: false
     };
   },
   methods: {
@@ -62,7 +65,9 @@ export default {
       EventBus.$emit("toggleModal");
     },
     toConfirmation() {
-      console.log("confirmation");
+      if (this.cart.length > 0) {
+        this.confirm = true;
+      }
     },
     removeItem(item) {
       let updatedOrder = this.cart.filter(function(goods) {
@@ -97,7 +102,8 @@ export default {
     });
   },
   components: {
-    order: CartPopupOrder
+    order: CartPopupOrder,
+    confirmation: CartPopupConfirmation
   }
 };
 </script>
@@ -123,8 +129,10 @@ export default {
     position: relative;
     padding: 30px 20px 30px;
     max-height: 80vh;
+    width: 90vw;
     overflow-y: auto;
     @media screen and (min-width: 1024px) {
+      width: 60vw;
       padding: 17px 75px 83px;
     }
   }
@@ -137,22 +145,17 @@ export default {
     text-align: center;
   }
   &__header {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     justify-content: space-between;
     border-bottom: 1px solid #747436;
-    //  padding-right: 40px;
-    @media screen and (min-width: 1024px) {
-      padding-right: 130px;
+    @media screen and (min-width: 768px) {
+      grid-template-columns: 3fr 2fr 1fr 1fr;
     }
   }
   &__body {
     padding: 30px 0;
     border-bottom: 1px solid #747436;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
   }
   &__footer {
     display: flex;
@@ -160,7 +163,7 @@ export default {
     align-items: center;
     padding-top: 35px;
     flex-wrap: wrap;
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: 450px) {
       padding-top: 55px;
       justify-content: space-between;
       flex-wrap: nowrap;
@@ -169,8 +172,32 @@ export default {
   &__total {
     font-size: 14px;
     text-align: center;
+    @media screen and (min-width: 768px) {
+      font-size: 18px;
+    }
   }
 }
 .ba-overlay {
+}
+
+.popup-header {
+  // .popup-header__name
+
+  &__name {
+  }
+
+  // .popup-header__quantity
+
+  &__quantity {
+    @media screen and (min-width: 768px) {
+      text-align: center;
+    }
+  }
+
+  // .popup-header__price
+
+  &__price {
+    text-align: center;
+  }
 }
 </style>
