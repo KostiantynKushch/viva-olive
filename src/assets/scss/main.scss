@@ -137,3 +137,19 @@
     transform: scale(1);
   }
 }
+
+// component fade
+.component-fade-enter-active,
+.component-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.component-fade-enter, .component-fade-leave-to
+ /* .component-fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
+}
+
+// for Coming soon placeholders
+.ba-inner {
+  min-height: 80vh;
+  padding-top: 200px;
+}

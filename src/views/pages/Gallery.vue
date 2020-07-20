@@ -1,7 +1,9 @@
 <template>
   <div class="ba-container">
-    <h1>Gallery Page</h1>
-    <p>Coming soon ...</p>
+    <div class="ba-inner">
+      <h1>Gallery Page</h1>
+      <p>Coming soon ...</p>
+    </div>
   </div>
   <!-- /.ba-container -->
 </template>

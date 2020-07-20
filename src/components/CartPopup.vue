@@ -33,7 +33,6 @@
             @increasedQuantity="increaseQuantity"
             @reducedQuantity="reduceQuantity"
           />
-
           <confirmation v-if="cart.length > 0 && confirm == true" :total="orderSum" />
         </div>
         <!-- /.bacart-popup__body -->

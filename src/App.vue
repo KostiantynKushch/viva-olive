@@ -4,7 +4,9 @@
     <transition name="fade">
       <CartPopup v-show="modalOpen" />
     </transition>
-    <router-view />
+    <transition name="component-fade" mode="out-in">
+      <router-view />
+    </transition>
     <Footer></Footer>
   </div>
 </template>

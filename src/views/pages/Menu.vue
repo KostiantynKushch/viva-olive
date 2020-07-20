@@ -1,7 +1,10 @@
 <template>
   <div class="ba-container">
-    <h1>Menu Page</h1>
-    <p>Coming soon ...</p>
+    <div class="ba-inner">
+      <h1>Menu Page</h1>
+      <p>Coming soon ...</p>
+    </div>
+    <!-- /.ba-inner -->
   </div>
   <!-- /.ba-container -->
 </template>
