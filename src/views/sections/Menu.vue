@@ -367,8 +367,7 @@ export default {
       z-index: -1;
       @media screen and (min-width: 1440px) {
         top: -100%;
-
-        height: 152px;
+		  height: 152px;
       }
     }
   }

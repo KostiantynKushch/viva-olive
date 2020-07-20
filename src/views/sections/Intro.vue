@@ -52,13 +52,13 @@ export default {
   height: 100vh;
   position: relative;
 
-  @media (min-width: 768px) {
+  @media (min-width: 640px) {
     background: url("../../assets/img/Intro-bg.png") center center no-repeat;
     background-size: cover;
     height: 100vh;
   }
   &__inner {
-    @media (min-width: 768px) {
+    @media (min-width: 640px) {
       padding-top: 50px;
     }
     @media (min-width: 1440px) {
@@ -72,7 +72,7 @@ export default {
       line-height: 30px;
       text-align: center;
       margin: 0;
-      @media (min-width: 768px) {
+      @media (min-width: 640px) {
         font-weight: bold;
         font-size: 27px;
       }
@@ -92,7 +92,7 @@ export default {
       line-height: 17px;
       text-align: center;
       margin: 25px 0;
-      @media (min-width: 768px) {
+      @media (min-width: 640px) {
         margin: 30px 0;
         font-size: 17px;
         line-height: 25px;
