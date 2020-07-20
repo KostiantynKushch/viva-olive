@@ -1,7 +1,9 @@
 <template>
   <div calss="app">
     <Header v-if="pages" :navLinks="pages"></Header>
-    <CartPopup v-show="modalOpen" />
+    <transition name="fade">
+      <CartPopup v-show="modalOpen" />
+    </transition>
     <router-view />
     <Footer></Footer>
   </div>

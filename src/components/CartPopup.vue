@@ -6,16 +6,25 @@
           @click="toggleModal"
           aria-label="close the cart popup"
           class="ba-close-btn ba-cart-popup__close"
+          title="Close"
         ></button>
-        <h3 class="ba-cart-popup__title">Кошик</h3>
+        <button
+          v-if="confirm"
+          @click="confirm = false"
+          aria-label="Go back to the previos step"
+          class="ba-cart-popup__back ba-back"
+          title="Back"
+        ></button>
+        <h3 v-if="confirm == false" class="ba-cart-popup__title">Кошик</h3>
+        <h3 v-if="confirm" class="ba-cart-popup__title">Підтвердження</h3>
         <!-- /.ba-cart-popup__title -->
-        <div class="ba-cart-popup__header ba-popup-header">
+        <div v-if="confirm == false" class="ba-cart-popup__header ba-popup-header">
           <p class="ba-subtitle ba-subtitle--accent popup-header__name">Страва</p>
           <p class="ba-subtitle ba-subtitle--accent popup-header__quantity">Кількість</p>
           <p class="ba-subtitle ba-subtitle--accent popup-header__price">Ціна</p>
         </div>
         <!-- /.ba-cart-popup__header -->
-        <div class="ba-cart-popup__body">
+        <div class="ba-cart-popup__body" :class="{'ba-cart-popup__body--confirmation' : confirm}">
           <p v-if="cart.length == 0" class="ba-placeholder">Your Cart is Empty</p>
           <order
             v-if="cart.length > 0 && confirm == false"
@@ -24,10 +33,11 @@
             @increasedQuantity="increaseQuantity"
             @reducedQuantity="reduceQuantity"
           />
-          <confirmation v-if="cart.length > 0 && confirm == true" />
+
+          <confirmation v-if="cart.length > 0 && confirm == true" :total="orderSum" />
         </div>
         <!-- /.bacart-popup__body -->
-        <div class="ba-cart-popup__footer">
+        <div class="ba-cart-popup__footer" v-if="confirm == false">
           <p class="ba-cart-popup__total">
             Сума замовлення:
             <b>{{ `${orderSum} грн.`}}</b>
@@ -67,6 +77,7 @@ export default {
     toConfirmation() {
       if (this.cart.length > 0) {
         this.confirm = true;
+        console.log(this.orderSum);
       }
     },
     removeItem(item) {
@@ -138,8 +149,13 @@ export default {
   }
   &__close {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 10px;
+    right: 10px;
+  }
+  &__back {
+    position: absolute;
+    top: 10px;
+    left: 10px;
   }
   &__title {
     text-align: center;
@@ -156,6 +172,9 @@ export default {
   &__body {
     padding: 30px 0;
     border-bottom: 1px solid #747436;
+    &--confirmation {
+      border: none;
+    }
   }
   &__footer {
     display: flex;
@@ -167,6 +186,9 @@ export default {
       padding-top: 55px;
       justify-content: space-between;
       flex-wrap: nowrap;
+    }
+    &--confirmation {
+      flex-direction: column;
     }
   }
   &__total {
@@ -200,7 +222,4 @@ export default {
     text-align: center;
   }
 }
-
-
-
 </style>

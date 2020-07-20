@@ -67,6 +67,23 @@
   }
 }
 
+.ba-back {
+  border: none;
+  background: url('~@/assets/icons/back-btn.svg') no-repeat center;
+  background-size: cover;
+  width: 8px;
+  height: 22px;
+  outline: none;
+  @media screen and (min-width: 1024px) {
+    width: 18px;
+    height: 35px;
+  }
+  &:hover,
+  &:focus {
+    opacity: 0.6;
+  }
+}
+
 .ba-quantity {
   border: none;
   width: 50px;
@@ -89,4 +106,34 @@
 
 .ba-placeholder {
   text-align: center;
+}
+
+// animations
+
+// fade
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
+}
+
+// bounce
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
