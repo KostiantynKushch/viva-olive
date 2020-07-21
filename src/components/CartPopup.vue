@@ -142,7 +142,7 @@ export default {
     width: 90vw;
     overflow-y: auto;
     @media screen and (min-width: 1024px) {
-      width: 60vw;
+      width: 73vw;
       padding: 17px 75px 83px;
     }
   }
