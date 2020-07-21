@@ -18,7 +18,7 @@ export default {};
 
 <style lang="scss">
 .ba-booking{
-			@media (max-width:767px) {
+			@media (max-width:639px) {
 				display:none;
 			}
 			
@@ -32,7 +32,7 @@ export default {};
 					
 					color: #fff;
 					font-size: 30px;
-					@media (min-width: 768px) {
+					@media (min-width: 640px) {
 						font-size: 25px;
 						padding: 150px 0;
 					}
@@ -51,7 +51,7 @@ export default {};
 						background-image: url("../../assets/img/section_bg_title_left.png") ;
 						background-size: cover;
 						z-index:-1;
-						@media (min-width: 768px) {
+						@media (min-width: 640px) {
 						top:30%;
 						left:10%;
 						width: 520px;

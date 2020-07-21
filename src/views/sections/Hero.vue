@@ -30,7 +30,7 @@ export default {};
     background-size: contain;
   }
   &__inner {
-	   @media (min-width: 768px) {
+	   @media (min-width: 640px) {
         padding-bottom: 110px;
       } 
     &-title {
