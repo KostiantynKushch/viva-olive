@@ -50,7 +50,7 @@ export default {
   background: url("../../assets/img/Intro-bg-mob.jpg") center center no-repeat;
   background-size: cover;
   height: 100vh;
- 
+position: relative;
 
   @media (min-width: 640px) {
     background: url("../../assets/img/Intro-bg.png") center center no-repeat;
@@ -58,7 +58,7 @@ export default {
     height: 100vh;
   }
   &__inner {
-	  position: relative;
+	
     @media (min-width: 640px) {
       padding-top: 50px;
     }
