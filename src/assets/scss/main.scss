@@ -14,8 +14,7 @@
   text-decoration: none;
   color: currentColor;
   text-transform: uppercase;
-  //   height: 65px;
-  //   line-height: 65px;
+  background: transparent;
   border: 2px solid currentColor;
   border-radius: 3px;
   padding: 19px 24px;
@@ -30,9 +29,10 @@
   }
 
   &:hover,
-  &:focus {
+  &:focus,
+  &:active {
     color: $white;
-    background: $light_gray;
+    background-color: $light_gray;
     border-color: $light_gray;
   }
 

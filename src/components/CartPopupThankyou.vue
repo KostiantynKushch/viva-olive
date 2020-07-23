@@ -34,10 +34,7 @@ export default {
 
 <style lang="scss">
 .ba-thank {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
   padding-top: 19px;
 }
 </style>
