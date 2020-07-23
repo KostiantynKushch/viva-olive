@@ -27,8 +27,8 @@ import SocialMedia from "@/components/SocialMedia.vue";
 export default {
   props: {
     links: {
-      type: Array
-    }
+      type: Array,
+    },
   },
   data() {
     return {};
@@ -36,8 +36,8 @@ export default {
   methods: {},
   components: {
     SelectLoc,
-    SocialMedia
-  }
+    SocialMedia,
+  },
 };
 </script>
 
@@ -48,9 +48,10 @@ export default {
   top: 100%;
   right: 0;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 82px);
   padding-right: 30px;
   z-index: 9;
+  overflow-y: auto;
   // .ba-mobnav__list
 
   &__list {
