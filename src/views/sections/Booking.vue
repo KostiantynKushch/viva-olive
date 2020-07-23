@@ -18,9 +18,7 @@ export default {};
 
 <style lang="scss">
 .ba-booking{
-			@media (max-width:639px) {
-				display:none;
-			}
+			
 			
 			&__inner{
 				
@@ -29,9 +27,9 @@ export default {};
 					margin: 0 auto;
 					text-align: center;
 					position: relative;
-					
 					color: #fff;
-					font-size: 30px;
+					font-size: 18px;
+					padding: 50px 0;
 					@media (min-width: 640px) {
 						font-size: 25px;
 						padding: 150px 0;
@@ -48,24 +46,21 @@ export default {};
 					&:before{
 						content: '';
 						position: absolute;
-						background-image: url("../../assets/img/section_bg_title_left.png") ;
-						background-size: cover;
-						z-index:-1;
+						background: url("../../assets/img/section_bg_title_left.png")  center no-repeat ;
+						content: "";
+     				   position: absolute;
+      				top: 10%;
+      				left: 0;
+      				right: 0;
+      				height: 100px;
+      				background-color: transparent;
+      				background-size: contain;
+      				z-index: -1;
 						@media (min-width: 640px) {
 						top:30%;
-						left:10%;
-						width: 520px;
 						height: 157px;
 						}
-						@media (min-width: 900px) {
-						left:25%;
-						}
-						@media (min-width: 1024px) {
-						left:25%;
-						}
-						@media (min-width: 1440px) {
-						left:30%;
-						}
+						
 					}
 }
 			}
