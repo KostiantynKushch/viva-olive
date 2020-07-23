@@ -1,62 +1,59 @@
 <template>
   <div class="ba-cart-popup ba-overlay">
-    <div class="ba-container">
-      <div class="ba-cart-popup__modal">
-        <button
-          @click="toggleModal"
-          aria-label="close the cart popup"
-          class="ba-close-btn ba-cart-popup__close"
-          title="Close"
-        ></button>
-        <button
-          v-show="confirm && ordered == false"
-          @click="confirm = false"
-          aria-label="Go back to the previos step"
-          class="ba-cart-popup__back ba-back"
-          title="Back"
-        ></button>
-        <h3 v-show="confirm == false" class="ba-cart-popup__title">Кошик</h3>
-        <h3 v-show="confirm && ordered == false" class="ba-cart-popup__title">Підтвердження</h3>
-        <!-- /.ba-cart-popup__title -->
-        <div v-show="confirm == false" class="ba-cart-popup__header ba-popup-header">
-          <p class="ba-subtitle ba-subtitle--accent popup-header__name">Страва</p>
-          <p class="ba-subtitle ba-subtitle--accent popup-header__quantity">Кількість</p>
-          <p class="ba-subtitle ba-subtitle--accent popup-header__price">Ціна</p>
-        </div>
-        <!-- /.ba-cart-popup__header -->
-        <div class="ba-cart-popup__body" :class="{'ba-cart-popup__body--confirmation' : confirm}">
-          <p v-show="cart.length == 0" class="ba-placeholder">Your Cart is Empty</p>
-          <order
-            v-show="cart.length > 0 && confirm == false && ordered == false"
-            :order="cart"
-            @removedItem="removeItem"
-            @increasedQuantity="increaseQuantity"
-            @reducedQuantity="reduceQuantity"
-          />
-          <confirmation
-            v-show="cart.length > 0 && confirm == true && ordered == false"
-            :total="orderSum"
-            @sendOrder="thankYou"
-          />
-          <thankyou v-show="ordered" />
-        </div>
-        <!-- /.bacart-popup__body -->
-        <div class="ba-cart-popup__footer" v-show="confirm == false">
-          <p class="ba-cart-popup__total">
-            Сума замовлення:
-            <b>{{ `${orderSum} грн.`}}</b>
-          </p>
-          <a
-            @click.prevent="toConfirmation"
-            href="#"
-            class="ba-button ba-button--small ba-button--olive"
-          >Замовити</a>
-        </div>
-        <!-- /.ba-cart-popup__footer -->
+    <div class="ba-cart-popup__modal">
+      <button
+        @click="toggleModal"
+        aria-label="close the cart popup"
+        class="ba-close-btn ba-cart-popup__close"
+        title="Close"
+      ></button>
+      <button
+        v-show="confirm && ordered == false"
+        @click="confirm = false"
+        aria-label="Go back to the previos step"
+        class="ba-cart-popup__back ba-back"
+        title="Back"
+      ></button>
+      <h3 v-show="confirm == false" class="ba-cart-popup__title">Кошик</h3>
+      <h3 v-show="confirm && ordered == false" class="ba-cart-popup__title">Підтвердження</h3>
+      <!-- /.ba-cart-popup__title -->
+      <div v-show="confirm == false" class="ba-cart-popup__header ba-popup-header">
+        <p class="ba-subtitle ba-subtitle--accent popup-header__name">Страва</p>
+        <p class="ba-subtitle ba-subtitle--accent popup-header__quantity">Кількість</p>
+        <p class="ba-subtitle ba-subtitle--accent popup-header__price">Ціна</p>
       </div>
-      <!-- /.ba-cart-popup__modal -->
+      <!-- /.ba-cart-popup__header -->
+      <div class="ba-cart-popup__body" :class="{'ba-cart-popup__body--confirmation' : confirm}">
+        <p v-show="cart.length == 0" class="ba-placeholder">Your Cart is Empty</p>
+        <order
+          v-show="cart.length > 0 && confirm == false && ordered == false"
+          :order="cart"
+          @removedItem="removeItem"
+          @increasedQuantity="increaseQuantity"
+          @reducedQuantity="reduceQuantity"
+        />
+        <confirmation
+          v-show="cart.length > 0 && confirm == true && ordered == false"
+          :total="orderSum"
+          @sendOrder="thankYou"
+        />
+        <thankyou v-show="ordered" />
+      </div>
+      <!-- /.bacart-popup__body -->
+      <div class="ba-cart-popup__footer" v-show="confirm == false">
+        <p class="ba-cart-popup__total">
+          Сума замовлення:
+          <b>{{ `${orderSum} грн.`}}</b>
+        </p>
+        <a
+          @click.prevent="toConfirmation"
+          href="#"
+          class="ba-button ba-button--small ba-button--olive"
+        >Замовити</a>
+      </div>
+      <!-- /.ba-cart-popup__footer -->
     </div>
-    <!-- /.ba-container -->
+    <!-- /.ba-cart-popup__modal -->
   </div>
   <!-- /.ba-cart -->
 </template>
@@ -155,6 +152,7 @@ export default {
   backdrop-filter: blur(5px);
   //   padding: 20vh 15vw;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
