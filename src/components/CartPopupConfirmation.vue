@@ -60,99 +60,105 @@
       </div>
       <!-- /.ba-form__options ba-form__delivery -->
       <transition name="bounce">
-        <div class="ba-form__delivery" v-if="delivery == 'Доставка'">
-          <p class="ba-subtitle ba-subtitle--accent ba-form__title">Адреса доставки</p>
+        <div class="ba-form__delivery ba-delivery" v-if="delivery == 'Доставка'">
+          <div class="ba-delivery__header">
+            <p class="ba-subtitle ba-subtitle--accent ba-form__title">Адреса доставки</p>
 
-          <div class="ba-form__field">
-            <label for="city">Місто</label>
-            <select name="city" class="locations ba-form__input" v-model="city" @change="getData">
-              <option
-                v-for="location in locations"
-                :key="location.key"
-                :value="location.name"
-              >{{location.name}}</option>
-            </select>
+            <div class="ba-form__field">
+              <label for="city" class="ba-form__label">Місто</label>
+              <select name="city" class="locations ba-form__input" v-model="city" @change="getData">
+                <option
+                  v-for="location in locations"
+                  :key="location.key"
+                  :value="location.name"
+                >{{location.name}}</option>
+              </select>
+            </div>
+            <div class="ba-form__field">
+              <label for="street" class="ba-form__label">Вулиця</label>
+              <input
+                type="text"
+                v-model="street"
+                @change="getData"
+                class="ba-form__input"
+                placeholder="Вулиця"
+              />
+            </div>
           </div>
-          <div class="ba-form__field">
-            <label for="street" class="ba-form__label">Вулиця</label>
-            <input
-              type="text"
-              v-model="street"
-              @change="getData"
-              class="ba-form__input"
-              placeholder="Вулиця"
-            />
+          <!-- /.ba-delivery__header -->
+          <div class="ba-delivery__body">
+            <div class="ba-form__field">
+              <label for="houseNumber" class="ba-form__label">Номер будинку</label>
+              <input
+                type="text"
+                v-model="houseNumber"
+                @change="getData"
+                class="ba-form__input"
+                placeholder="Номер будинку"
+              />
+            </div>
+            <div class="ba-form__field">
+              <label for="houseBuilding" class="ba-form__label">Корпус</label>
+              <input
+                type="text"
+                v-model="houseBuilding"
+                @change="getData"
+                class="ba-form__input"
+                placeholder="Корпус"
+              />
+            </div>
+            <div class="ba-form__field">
+              <label for="doorCode" class="ba-form__label">Дверний код</label>
+              <input
+                type="text"
+                v-model="doorCode"
+                @change="getData"
+                class="ba-form__input"
+                placeholder="Дверний код"
+              />
+            </div>
+            <div class="ba-form__field">
+              <label for="apartment" class="ba-form__label">Квартира</label>
+              <input
+                type="text"
+                v-model="apartment"
+                @change="getData"
+                class="ba-form__input"
+                placeholder="Квартира"
+              />
+            </div>
+            <div class="ba-form__field">
+              <label for="entrance" class="ba-form__label">Під’їзд</label>
+              <input
+                type="text"
+                v-model="entrance"
+                @change="getData"
+                class="ba-form__input"
+                placeholder="Під’їзд"
+              />
+            </div>
+            <div class="ba-form__field">
+              <label for="floor" class="ba-form__label">Поверх</label>
+              <input
+                type="text"
+                v-model="floor"
+                @change="getData"
+                class="ba-form__input"
+                placeholder="Поверх"
+              />
+            </div>
+            <div class="ba-form__field">
+              <label for="getIn" class="ba-form__label">Доставити в</label>
+              <input
+                type="text"
+                v-model="getIn"
+                @change="getData"
+                class="ba-form__input"
+                placeholder="15:30"
+              />
+            </div>
           </div>
-          <div class="ba-form__field">
-            <label for="houseNumber" class="ba-form__label">Номер будинку</label>
-            <input
-              type="text"
-              v-model="houseNumber"
-              @change="getData"
-              class="ba-form__input"
-              placeholder="Номер будинку"
-            />
-          </div>
-          <div class="ba-form__field">
-            <label for="houseBuilding" class="ba-form__label">Корпус</label>
-            <input
-              type="text"
-              v-model="houseBuilding"
-              @change="getData"
-              class="ba-form__input"
-              placeholder="Корпус"
-            />
-          </div>
-          <div class="ba-form__field">
-            <label for="doorCode" class="ba-form__label">Дверний код</label>
-            <input
-              type="text"
-              v-model="doorCode"
-              @change="getData"
-              class="ba-form__input"
-              placeholder="Дверний код"
-            />
-          </div>
-          <div class="ba-form__field">
-            <label for="apartment" class="ba-form__label">Квартира</label>
-            <input
-              type="text"
-              v-model="apartment"
-              @change="getData"
-              class="ba-form__input"
-              placeholder="Квартира"
-            />
-          </div>
-          <div class="ba-form__field">
-            <label for="entrance" class="ba-form__label">Під’їзд</label>
-            <input
-              type="text"
-              v-model="entrance"
-              @change="getData"
-              class="ba-form__input"
-              placeholder="Під’їзд"
-            />
-          </div>
-          <div class="ba-form__field">
-            <label for="floor" class="ba-form__label">Поверх</label>
-            <input
-              type="text"
-              v-model="floor"
-              @change="getData"
-              class="ba-form__input"
-              placeholder="Поверх"
-            />
-          </div>
-          <div class="ba-form__field">
-            <label for="getIn" class="ba-form__label">Доставити в</label>
-            <input
-              type="text"
-              v-model="getIn"
-              @change="getData"
-              class="ba-form__input"
-              placeholder="15:30"
-            />
-          </div>
+          <!-- /.ba-delivery__body -->
         </div>
         <!-- /.ba-form__delivery -->
       </transition>
@@ -187,11 +193,18 @@
       </div>
       <!-- /.ba-form__options ba-form__payment -->
 
-      <p class="ba-confirmation__total">
-        До сплати:
-        <b>{{ `${total} грн.`}}</b>
-      </p>
-      <input type="submit" class="ba-button ba-button--small ba-button--olive" value="Підтвердити" />
+      <div class="ba-form__footer">
+        <p class="ba-confirmation__total">
+          До сплати:
+          <b>{{ `${total} грн.`}}</b>
+        </p>
+        <input
+          type="submit"
+          class="ba-button ba-button--small ba-button--olive"
+          value="Підтвердити"
+        />
+      </div>
+      <!-- /.ba-form__footer -->
     </form>
     <!-- /.ba-confirmation__form -->
     <!-- <a href="#" class="ba-button ba-button--small ba-button--olive">Підтвердити</a> -->
@@ -203,8 +216,8 @@
 export default {
   props: {
     total: {
-      type: Number
-    }
+      type: Number,
+    },
   },
   data() {
     return {
@@ -221,7 +234,7 @@ export default {
       floor: "",
       getIn: "",
       paymentMethod: "Готівка",
-      data: []
+      data: [],
     };
   },
   methods: {
@@ -230,7 +243,7 @@ export default {
         { name: this.name },
         { phone: this.phone },
         { total: this.total },
-        { delivery: this.delivery }
+        { delivery: this.delivery },
       ];
       if (this.delivery == "Доставка") {
         data.push(
@@ -250,15 +263,15 @@ export default {
     },
     sendData() {
       console.log(this.data);
-    }
+    },
   },
   created() {
     fetch("data/locations.json")
-      .then(result => result.json())
-      .then(data => {
+      .then((result) => result.json())
+      .then((data) => {
         this.locations = data.locations;
       });
-  }
+  },
 };
 </script>
 
@@ -316,8 +329,59 @@ export default {
   }
   &__delivery {
     margin-bottom: 40px;
-    @media screen and (min-width: 1024px) {
+
+    .ba-form__input {
+      width: 50%;
+    }
+
+    @media screen and (min-width: 1440px) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       margin-bottom: 70px;
+    }
+  }
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.ba-delivery {
+  &__header {
+    grid-column: 1/2;
+    margin-bottom: 57px;
+    .ba-form__input {
+      width: 70%;
+    }
+  }
+  &__body {
+    .ba-form__field {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .ba-form__input {
+      width: 70%;
+    }
+    @media screen and (min-width: 510px) {
+      padding-right: 20%;
+    }
+    @media screen and (min-width: 640px) {
+      .ba-form__field {
+        flex-direction: row;
+      }
+      padding-right: 0;
+    }
+    @media screen and (min-width: 1440px) {
+      .ba-form__input {
+        width: 50%;
+      }
+      grid-column: 1/4;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 30px;
     }
   }
 }
@@ -326,6 +390,10 @@ export default {
   &__label {
     cursor: pointer;
     padding: 0 30px 0 0;
+    font-weight: 600;
+    @media screen and (min-width: 1024px) {
+      font-size: 20px;
+    }
 
     &:before {
       content: "";
