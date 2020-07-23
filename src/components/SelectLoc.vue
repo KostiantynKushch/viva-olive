@@ -3,7 +3,13 @@
     <svg class="icon">
       <use xlink:href="@/assets/icons/sprite.svg#location" />
     </svg>
-    <select name="locations" class="locations">
+    <select
+      name="locations"
+      class="locations"
+      v-model="currentLock"
+      :value="currentLock"
+      @change="emitLock"
+    >
       <option
         v-for="location in locations"
         :key="location.key"
@@ -15,20 +21,31 @@
 </template>
 
 <script>
+import { EventBus } from "@/main.js";
+
 export default {
   data() {
     return {
-      locations: null
+      locations: null,
+      currentLock: "",
     };
   },
-
+  methods: {
+    emitLock() {
+      EventBus.$emit("currentLock", this.currentLock);
+    },
+  },
   created() {
     fetch("data/locations.json")
-      .then(result => result.json())
-      .then(data => {
+      .then((result) => result.json())
+      .then((data) => {
         this.locations = data.locations;
+      })
+      .then(() => {
+        this.currentLock = this.locations[0].name;
+        this.emitLock();
       });
-  }
+  },
 };
 </script>
 

@@ -21,15 +21,15 @@
 export default {
   props: {
     links: {
-      type: Array
+      type: Array,
     },
     lastItem: {
-      type: Boolean
-    }
+      type: Boolean,
+    },
   },
   data() {
     return {};
-  }
+  },
 };
 </script>
 

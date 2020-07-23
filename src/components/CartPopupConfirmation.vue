@@ -60,7 +60,7 @@
       </div>
       <!-- /.ba-form__options ba-form__delivery -->
       <transition name="bounce">
-        <div class="ba-form__delivery ba-delivery" v-if="delivery == 'Доставка'">
+        <div class="ba-form__delivery ba-delivery" v-show="delivery == 'Доставка'">
           <div class="ba-delivery__header">
             <p class="ba-subtitle ba-subtitle--accent ba-form__title">Адреса доставки</p>
 
@@ -155,6 +155,7 @@
                 @change="getData"
                 class="ba-form__input"
                 placeholder="15:30"
+                value="city"
               />
             </div>
           </div>
@@ -213,6 +214,8 @@
 </template>
 
 <script>
+import { EventBus } from "@/main.js";
+
 export default {
   props: {
     total: {
@@ -224,7 +227,7 @@ export default {
       name: "",
       phone: "",
       delivery: "Самовивіз",
-      city: "Полтава",
+      city: "",
       street: "",
       houseNumber: "",
       houseBuilding: "",
@@ -235,6 +238,7 @@ export default {
       getIn: "",
       paymentMethod: "Готівка",
       data: [],
+      locations: [],
     };
   },
   methods: {
@@ -262,7 +266,6 @@ export default {
       this.data = data;
     },
     sendData() {
-      console.log(this.data);
       this.$emit("sendOrder");
     },
   },
@@ -272,6 +275,9 @@ export default {
       .then((data) => {
         this.locations = data.locations;
       });
+    EventBus.$on("currentLock", (lock) => {
+      this.city = lock;
+    });
   },
 };
 </script>
