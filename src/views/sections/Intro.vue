@@ -50,7 +50,7 @@ export default {
   background: url("../../assets/img/Intro-bg-mob.jpg") center center no-repeat;
   background-size: cover;
   height: 100vh;
-  position: relative;
+ 
 
   @media (min-width: 640px) {
     background: url("../../assets/img/Intro-bg.png") center center no-repeat;
@@ -58,6 +58,7 @@ export default {
     height: 100vh;
   }
   &__inner {
+	  position: relative;
     @media (min-width: 640px) {
       padding-top: 50px;
     }
@@ -65,6 +66,7 @@ export default {
       padding-top: 150px;
     }
     &--title {
+		 
       font-family: Montserrat;
       font-style: normal;
       font-weight: 600;
@@ -110,7 +112,8 @@ export default {
     }
     &--btn {
       display: flex;
-      justify-content: center;
+		justify-content: center;
+		
       @media (min-width: 1440px) {
         padding: 30px;
       }
@@ -135,6 +138,7 @@ export default {
     position: absolute;
 	 bottom: 0;
 	 text-decoration: none;
+	 
     &:hover {
       transform: scale(1.1);
     }

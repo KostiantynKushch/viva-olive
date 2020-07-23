@@ -23,7 +23,7 @@
 		<div class="ba-destop-footer__inner destop">
         <div class="ba-destop-footer__inner-content">
 			  <p class="ba-destop-footer__inner-content--text-discription">При використанні матеріалів з сайту посилання на ресурс обов'язкове
-				  <a href="www.viv-live.com.ua" class="ba-destop-footer__inner-content--text--link">www.viv-live.com.ua</a>
+				  <a href="www.viv-live.com.ua" class="ba-destop-footer__inner-content--text--link" target="_blank">www.viv-live.com.ua</a>
 			  </p>
 			 <a class="ba-footer-logo__img" href="#">
 				 <img alt="Logo" src="../assets/img/footer-logo.png"  />
@@ -33,11 +33,11 @@
 			<div class="ba-destop-footer__inner-icons">
 				<p class="ba-destop-footer__inner-icons--text">Також нас можна знайти в соціальних мережах, приєднуйтесь до нас:</p>
 				 <div class="ba-destop-footer__inner-wrapper--icons">
-			  <a href="" class="ba-destop-footer__inner-wrapper-icons--icon"><img src="../assets/img/Instagram.png" alt=""></a>
-			  <a href="" class="ba-destop-footer__inner-wrapper-icons--icon"><img src="../assets/img/VK.png" alt=""></a>
-			  <a href="" class="ba-destop-footer__inner-wrapper-icons--icon"><img src="../assets/img/Twitter.png" alt=""></a>
-			  <a href="" class="ba-destop-footer__inner-wrapper-icons--icon"><img src="../assets/img/Facebook.png" alt=""></a>
-			  <a href="" class="ba-destop-footer__inner-wrapper-icons--icon"><img src="../assets/img/Odnoklassniki.png" alt=""></a>
+			  <a href="#" class="ba-destop-footer__inner-wrapper-icons--icon"><img src="../assets/img/Instagram.png" alt=""></a>
+			  <a href="#" class="ba-destop-footer__inner-wrapper-icons--icon"><img src="../assets/img/VK.png" alt=""></a>
+			  <a href="#" class="ba-destop-footer__inner-wrapper-icons--icon"><img src="../assets/img/Twitter.png" alt=""></a>
+			  <a href="#" class="ba-destop-footer__inner-wrapper-icons--icon"><img src="../assets/img/Facebook.png" alt=""></a>
+			  <a href="#" class="ba-destop-footer__inner-wrapper-icons--icon"><img src="../assets/img/Odnoklassniki.png" alt=""></a>
 		  </div>
 			</div>
 		  </div>
@@ -138,10 +138,10 @@ export default {};
 }
 .ba-footer-logo__img{
 	@media screen and (min-width:640px){
-		padding: 0 15px;
+		padding: 0 25px 0 0;
 	}
 	@media screen and (min-width:1024px){
-		padding: 0 75px;
+		padding: 0 75px 0 25px;
 	}
 	@media screen and (min-width:1440px){
 	
@@ -178,6 +178,15 @@ export default {};
 		padding-left: 30px;
 		
 	}
+	
+}
+.ba-destop-footer__inner-content--text--link{
+	color: #2C2C11;
+	text-decoration: none;
+	cursor: pointer;
+}
+.ba-destop-footer__inner-wrapper-icons--icon:hover,.ba-footer__inner-wrapper-icons--icon:hover{
+	opacity: 0.5;
 }
 
 </style>
