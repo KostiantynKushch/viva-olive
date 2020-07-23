@@ -49,6 +49,7 @@
           @click.prevent="toConfirmation"
           href="#"
           class="ba-button ba-button--small ba-button--olive"
+          :class="{'ba-button--disabled' : cart.length == 0}"
         >Замовити</a>
       </div>
       <!-- /.ba-cart-popup__footer -->

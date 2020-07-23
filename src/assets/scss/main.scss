@@ -36,17 +36,17 @@
     border-color: $light_gray;
   }
 
-  &--disabled {
-    pointer-events: none;
-    user-select: none;
-    color: $disable;
-  }
   &--small {
     padding-top: 10px;
     padding-bottom: 10px;
   }
   &--olive {
     color: $light_gray;
+  }
+  &--disabled {
+    pointer-events: none;
+    user-select: none;
+    color: $disable;
   }
 }
 
