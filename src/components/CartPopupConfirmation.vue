@@ -263,6 +263,7 @@ export default {
     },
     sendData() {
       console.log(this.data);
+      this.$emit("sendOrder");
     },
   },
   created() {

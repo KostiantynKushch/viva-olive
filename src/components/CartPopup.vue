@@ -9,14 +9,14 @@
           title="Close"
         ></button>
         <button
-          v-if="confirm"
+          v-if="confirm && ordered == false"
           @click="confirm = false"
           aria-label="Go back to the previos step"
           class="ba-cart-popup__back ba-back"
           title="Back"
         ></button>
         <h3 v-if="confirm == false" class="ba-cart-popup__title">Кошик</h3>
-        <h3 v-if="confirm" class="ba-cart-popup__title">Підтвердження</h3>
+        <h3 v-if="confirm && ordered == false" class="ba-cart-popup__title">Підтвердження</h3>
         <!-- /.ba-cart-popup__title -->
         <div v-if="confirm == false" class="ba-cart-popup__header ba-popup-header">
           <p class="ba-subtitle ba-subtitle--accent popup-header__name">Страва</p>
@@ -27,13 +27,18 @@
         <div class="ba-cart-popup__body" :class="{'ba-cart-popup__body--confirmation' : confirm}">
           <p v-if="cart.length == 0" class="ba-placeholder">Your Cart is Empty</p>
           <order
-            v-if="cart.length > 0 && confirm == false"
+            v-if="cart.length > 0 && confirm == false && ordered == false"
             :order="cart"
             @removedItem="removeItem"
             @increasedQuantity="increaseQuantity"
             @reducedQuantity="reduceQuantity"
           />
-          <confirmation v-if="cart.length > 0 && confirm == true" :total="orderSum" />
+          <confirmation
+            v-if="cart.length > 0 && confirm == true && ordered == false"
+            :total="orderSum"
+            @sendOrder="thankYou"
+          />
+          <thankyou v-if="ordered" />
         </div>
         <!-- /.bacart-popup__body -->
         <div class="ba-cart-popup__footer" v-if="confirm == false">
@@ -60,18 +65,36 @@
 import { EventBus } from "@/main.js";
 import CartPopupOrder from "@/components/CartPopupOrder";
 import CartPopupConfirmation from "@/components/CartPopupConfirmation";
+import CartPopupThankyou from "@/components/CartPopupThankyou";
 
 export default {
   data() {
     return {
       cart: [],
       sum: 0,
-      confirm: false
+      confirm: false,
+      ordered: false,
+      totalQuantity: 0,
     };
   },
   methods: {
+    thankYou() {
+      this.ordered = true;
+    },
+    clearCart() {
+      //clear cart after ordering
+      if (this.ordered == true) {
+        this.cart = [];
+        this.sum = 0;
+        this.confirm = false;
+        this.ordered = false;
+        EventBus.$emit("totalQuantity", this.totalQuantity);
+        EventBus.$emit("updatedCart", this.cart);
+      }
+    },
     toggleModal() {
       EventBus.$emit("toggleModal");
+      this.clearCart();
     },
     toConfirmation() {
       if (this.cart.length > 0) {
@@ -80,7 +103,7 @@ export default {
       }
     },
     removeItem(item) {
-      let updatedOrder = this.cart.filter(function(goods) {
+      let updatedOrder = this.cart.filter(function (goods) {
         return goods != item;
       });
       this.cart = updatedOrder;
@@ -95,26 +118,27 @@ export default {
         item.quantity--;
         EventBus.$emit("updatedCart", this.cart);
       }
-    }
+    },
   },
   computed: {
     orderSum() {
       let sum = 0;
-      this.cart.forEach(cartItem => {
+      this.cart.forEach((cartItem) => {
         sum += cartItem.price * cartItem.quantity;
       });
       return sum;
-    }
+    },
   },
   created() {
-    EventBus.$on("order", cart => {
+    EventBus.$on("order", (cart) => {
       this.cart = cart;
     });
   },
   components: {
     order: CartPopupOrder,
-    confirmation: CartPopupConfirmation
-  }
+    confirmation: CartPopupConfirmation,
+    thankyou: CartPopupThankyou,
+  },
 };
 </script>
 
@@ -143,7 +167,7 @@ export default {
     overflow-y: auto;
     @media screen and (min-width: 1024px) {
       width: 73vw;
-      padding: 17px 75px 83px;
+      padding: 17px 75px 70px;
     }
   }
   &__close {
