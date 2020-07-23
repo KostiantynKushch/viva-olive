@@ -22,31 +22,37 @@ export default {
     return {
       pages: null,
       locations: null,
-      modalOpen: false
+      modalOpen: false,
     };
   },
   components: {
     Header,
     Footer,
-    CartPopup
+    CartPopup,
   },
 
   created() {
     fetch("data/pages.json")
-      .then(result => result.json())
-      .then(data => (this.pages = data));
+      .then((result) => result.json())
+      .then((data) => (this.pages = data));
 
     EventBus.$on("toggleModal", () => {
       this.modalOpen = !this.modalOpen;
+
+      if (this.modalOpen) {
+        document.documentElement.style.overflow = "hidden";
+        return;
+      }
+      document.documentElement.style.overflow = "auto";
     });
 
     // hide modal on 'Esc'
-    addEventListener("keydown", event => {
+    addEventListener("keydown", (event) => {
       if (event.key === "Escape" && this.modalOpen == true) {
         this.modalOpen = false;
       }
     });
-  }
+  },
 };
 </script>
 
