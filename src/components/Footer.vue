@@ -186,28 +186,31 @@ export default {};
     }
   }
 }
-.ba-destop-footer__inner-icons--text {
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  padding-left: 10px;
-  @media screen and (min-width: 1024px) {
-    padding: 10px 10px;
-    font-size: 14px;
-  }
-  @media screen and (min-width: 1440px) {
-    max-width: 281px;
-    font-size: 20px;
-    line-height: 27px;
-    padding-left: 30px;
-  }
+.ba-destop-footer__inner-icons--text{
+		font-family: Montserrat;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 12px;
+		
+		@media screen and (min-width:1024px){
+		padding: 10px 0px;
+		font-size: 14px;
+	}
+		@media screen and (min-width:1440px){
+		max-width: 281px;
+		font-size: 20px;
+		line-height: 27px;
+		
+	}
 }
-.ba-destop-footer__inner-wrapper-icons--icon {
-  padding-left: 10px;
-  @media screen and (min-width: 1440px) {
-    padding-left: 30px;
-  }
+.ba-destop-footer__inner-wrapper-icons--icon + .ba-destop-footer__inner-wrapper-icons--icon{
+	margin-left: 10px;
+	@media screen and (min-width:1440px){
+		margin-left: 30px;
+		
+	}
+	
+
 }
 .ba-destop-footer__inner-content--text--link {
   color: #2c2c11;

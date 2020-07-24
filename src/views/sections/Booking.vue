@@ -44,18 +44,6 @@ export default {};
 					}
 					
 					&:before{
-						content: '';
-						position: absolute;
-						background: url("../../assets/img/section_bg_title_left.png")  center no-repeat ;
-						content: "";
-     				   position: absolute;
-      				top: 10%;
-      				left: 0;
-      				right: 0;
-      				height: 100px;
-      				background-color: transparent;
-      				background-size: contain;
-      				z-index: -1;
 						@media (min-width: 640px) {
 						top:30%;
 						height: 157px;
