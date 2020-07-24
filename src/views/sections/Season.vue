@@ -54,6 +54,7 @@ export default {
 		font-size: 14px;
 		line-height: 27px;
 		max-width: 180px;
+		cursor: pointer;
 		&-icon{
 			padding-left: 10px;
 		}

@@ -216,6 +216,9 @@ export default {};
   color: #2c2c11;
   text-decoration: none;
   cursor: pointer;
+  &:hover{
+    opacity: 0.6;
+  }
 }
 .ba-destop-footer__inner-wrapper-icons--icon:hover,
 .ba-footer__inner-wrapper-icons--icon:hover {
