@@ -3,10 +3,13 @@ import App from './App.vue'
 import router from './router'
 import VueMq from 'vue-mq'
 import vueSmoothScroll from 'vue2-smooth-scroll'
+import VueMeta from 'vue-meta'
 
 export const EventBus = new Vue();
 
 Vue.config.productionTip = false
+
+Vue.use(VueMeta)
 
 Vue.use(VueMq, {
 	breakpoints: {

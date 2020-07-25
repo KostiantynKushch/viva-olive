@@ -22,12 +22,22 @@ export default {
     Intro,
     Menu,
     Season,
-    Booking
+    Booking,
   },
   data() {
     return {};
   },
 
-  created() {}
+  created() {},
+  metaInfo: {
+    title: "Viva Olive",
+    titleTemplate: "%s | Головна",
+    meta: [
+      {
+        name: "description",
+        content: 'Ресторан "VIVA OLIVE" запрошує всіх бажаючих на обід!',
+      },
+    ],
+  },
 };
 </script>

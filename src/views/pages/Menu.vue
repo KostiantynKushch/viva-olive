@@ -10,7 +10,18 @@
 </template>
 
 <script>
-export default {};
+export default {
+  metaInfo: {
+    title: "Viva Olive",
+    titleTemplate: "%s | Меню",
+    meta: [
+      {
+        name: "description",
+        content: 'Ресторан "VIVA OLIVE" запрошує всіх бажаючих на обід!',
+      },
+    ],
+  },
+};
 </script>
 
 <style>
